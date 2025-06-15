@@ -1,0 +1,22 @@
+{
+    "portfolio": [
+        {
+            "symbol": "AAPL",
+            "quantity": 10,
+            "purchase_price": 150.0
+        },
+        {
+            "symbol": "GOOGL",
+            "quantity": 5,
+            "purchase_price": 2800.0
+        },
+        {
+            "symbol": "MSFT",
+            "quantity": 8,
+            "purchase_price": 300.0
+        }
+    ],
+    "risk_tolerance": "moderate",
+    "investment_goals": ["growth", "income"],
+    "time_horizon": "5-10 years"
+}
