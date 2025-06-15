@@ -1,0 +1,86 @@
+{
+  "timestamp": "2025-06-15T17:08:40.118304",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "TSLA",
+        "quantity": 4000,
+        "purchase_price": 8000,
+        "current_price": 325.31,
+        "position_value": 1301240.0,
+        "return_percentage": -95.933625
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 32000000,
+    "current_value": 1301240.0,
+    "total_return": -30698760.0,
+    "return_percentage": -95.933625
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": "N/A"
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.12202826698103485,
+    "subjectivity": 0.3722065434961863
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "TSLA"
+      ],
+      "values": [
+        1301240.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-15T17:08:40.118300"
+      ],
+      "y": [
+        -95.933625
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.12202826698103485,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    }
+  }
+}

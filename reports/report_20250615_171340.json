@@ -1,0 +1,86 @@
+{
+  "timestamp": "2025-06-15T17:13:40.007939",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 300,
+        "purchase_price": 4000,
+        "current_price": 196.45,
+        "position_value": 58935.0,
+        "return_percentage": -95.08875
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1200000,
+    "current_value": 58935.0,
+    "total_return": -1141065.0,
+    "return_percentage": -95.08875
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": "N/A"
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.13348127834467122,
+    "subjectivity": 0.41241956297670584
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL"
+      ],
+      "values": [
+        58935.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-15T17:13:40.007936"
+      ],
+      "y": [
+        -95.08875
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.13348127834467122,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    }
+  }
+}

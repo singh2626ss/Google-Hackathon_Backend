@@ -24,12 +24,14 @@ class MarketDataAgent:
         """Initialize the MarketDataAgent with API configuration."""
         self.logger = logging.getLogger(__name__)
         self.finnhub_api_key = os.getenv('FINNHUB_API_KEY')
-        self.base_url = 'https://finnhub.io/api/v1'
+        self.alpha_vantage_api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
+        self.base_url_finnhub = 'https://finnhub.io/api/v1'
+        self.base_url_alpha_vantage = 'https://www.alphavantage.co/query'
         self.logger.info("Initializing MarketDataAgent")
 
     async def get_stock_quote(self, symbol: str) -> Dict:
         """
-        Get current stock quote for a symbol.
+        Get current stock quote for a symbol using Finnhub API with retry logic.
         
         Args:
             symbol (str): Stock symbol to get quote for
@@ -37,32 +39,82 @@ class MarketDataAgent:
         Returns:
             Dict: Current stock quote data
         """
-        try:
-            self.logger.info(f"Getting stock quote for {symbol}")
-            url = f"{self.base_url}/quote"
-            params = {
-                'symbol': symbol,
-                'token': self.finnhub_api_key
-            }
+        max_retries = 3
+        retry_count = 0
+        while retry_count < max_retries:
+            try:
+                self.logger.info(f"Getting stock quote for {symbol}")
+                url = f"{self.base_url_finnhub}/quote"
+                params = {
+                    'symbol': symbol,
+                    'token': self.finnhub_api_key
+                }
+                
+                response = requests.get(url, params=params)
+                response.raise_for_status()
+                
+                quote_data = response.json()
+                return {
+                    'symbol': symbol,
+                    'current_price': quote_data.get('c'),
+                    'change': quote_data.get('dp'),
+                    'high': quote_data.get('h'),
+                    'low': quote_data.get('l'),
+                    'open': quote_data.get('o'),
+                    'previous_close': quote_data.get('pc'),
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+            except Exception as e:
+                retry_count += 1
+                self.logger.error(f"Error getting stock quote for {symbol}: {str(e)}")
+                if retry_count == max_retries:
+                    raise
+                self.logger.info(f"Retrying... Attempt {retry_count} of {max_retries}")
+
+    async def get_alpha_vantage_quote(self, symbol: str) -> Dict:
+        """
+        Get current stock quote for a symbol using Alpha Vantage API with retry logic.
+        
+        Args:
+            symbol (str): Stock symbol to get quote for
             
-            response = requests.get(url, params=params)
-            response.raise_for_status()
-            
-            quote_data = response.json()
-            return {
-                'symbol': symbol,
-                'current_price': quote_data.get('c'),
-                'change': quote_data.get('dp'),
-                'high': quote_data.get('h'),
-                'low': quote_data.get('l'),
-                'open': quote_data.get('o'),
-                'previous_close': quote_data.get('pc'),
-                'timestamp': datetime.now().isoformat()
-            }
-            
-        except Exception as e:
-            self.logger.error(f"Error getting stock quote for {symbol}: {str(e)}")
-            raise
+        Returns:
+            Dict: Current stock quote data
+        """
+        max_retries = 3
+        retry_count = 0
+        while retry_count < max_retries:
+            try:
+                self.logger.info(f"Getting Alpha Vantage stock quote for {symbol}")
+                url = self.base_url_alpha_vantage
+                params = {
+                    'function': 'GLOBAL_QUOTE',
+                    'symbol': symbol,
+                    'apikey': self.alpha_vantage_api_key
+                }
+                
+                response = requests.get(url, params=params)
+                response.raise_for_status()
+                
+                quote_data = response.json()
+                return {
+                    'symbol': symbol,
+                    'current_price': quote_data.get('05. price'),
+                    'change': quote_data.get('09. change'),
+                    'high': quote_data.get('03. high'),
+                    'low': quote_data.get('04. low'),
+                    'open': quote_data.get('02. open'),
+                    'previous_close': quote_data.get('08. previous close'),
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+            except Exception as e:
+                retry_count += 1
+                self.logger.error(f"Error getting Alpha Vantage stock quote for {symbol}: {str(e)}")
+                if retry_count == max_retries:
+                    raise
+                self.logger.info(f"Retrying... Attempt {retry_count} of {max_retries}")
 
     async def get_company_profile(self, symbol: str) -> Dict:
         """
@@ -76,7 +128,7 @@ class MarketDataAgent:
         """
         try:
             self.logger.info(f"Getting company profile for {symbol}")
-            url = f"{self.base_url}/stock/profile2"
+            url = f"{self.base_url_finnhub}/stock/profile2"
             params = {
                 'symbol': symbol,
                 'token': self.finnhub_api_key
@@ -103,7 +155,7 @@ class MarketDataAgent:
         """
         try:
             self.logger.info(f"Getting market news for category: {category}")
-            url = f"{self.base_url}/news"
+            url = f"{self.base_url_finnhub}/news"
             params = {
                 'category': category,
                 'token': self.finnhub_api_key
@@ -131,7 +183,7 @@ class MarketDataAgent:
         """
         try:
             self.logger.info(f"Getting technical indicators for {symbol}")
-            url = f"{self.base_url}/indicator"
+            url = f"{self.base_url_finnhub}/indicator"
             params = {
                 'symbol': symbol,
                 'resolution': resolution,
@@ -146,7 +198,6 @@ class MarketDataAgent:
         except Exception as e:
             self.logger.error(f"Error getting technical indicators for {symbol}: {str(e)}")
             raise
-
 # Create the ADK tool
 @FunctionTool
 def get_market_data_tool(symbol: str) -> Dict:
@@ -161,3 +212,4 @@ market_agent = LlmAgent(
     description="Fetches and analyzes market data using Finnhub API.",
     tools=[get_market_data_tool],
 )
+

@@ -6,6 +6,9 @@ import logging
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
 import json
+import pandas as pd
+from pathlib import Path
+import plotly.graph_objects as go
 from google.adk.agents import LlmAgent
 from google.adk.tools import FunctionTool
 
@@ -18,6 +21,8 @@ class ReportingAgent:
         """Initialize the ReportingAgent."""
         self.logger = logging.getLogger(__name__)
         self.logger.info("Initializing ReportingAgent")
+        self.reports_dir = Path("reports")
+        self.reports_dir.mkdir(exist_ok=True)
 
     async def generate_portfolio_report(
         self,
@@ -62,6 +67,11 @@ class ReportingAgent:
             recommendations = self._generate_recommendations(
                 portfolio_summary, risk_analysis, sentiment
             )
+
+            # Generate visualization data
+            visualization_data = self._generate_visualization_data(
+                portfolio, market_data, performance, sentiment
+            )
             
             # Combine all sections
             report = {
@@ -70,8 +80,12 @@ class ReportingAgent:
                 'performance_analysis': performance_analysis,
                 'risk_analysis': risk_analysis,
                 'market_sentiment': sentiment,
-                'recommendations': recommendations
+                'recommendations': recommendations,
+                'visualization_data': visualization_data
             }
+
+            # Save report for historical comparison
+            self._save_report(report)
             
             self.logger.info("Portfolio report generation complete")
             self.logger.debug(f"Generated report: {report}")
@@ -185,15 +199,13 @@ class ReportingAgent:
             self.logger.debug(f"Formatting sentiment analysis for data: {sentiment_analysis}")
             sentiment = sentiment_analysis.get('sentiment', sentiment_analysis)
             self.logger.debug(f"Extracted sentiment data: {sentiment}")
-            
             formatted = {
-                'overall_sentiment': sentiment['category'],
-                'sentiment_strength': abs(sentiment['polarity']),
-                'subjectivity': sentiment['subjectivity']
+                'overall_sentiment': sentiment.get('category', 'neutral'),
+                'sentiment_strength': abs(sentiment.get('polarity', 0.0)),
+                'subjectivity': sentiment.get('subjectivity', 0.0)
             }
             self.logger.debug(f"Formatted sentiment analysis: {formatted}")
             return formatted
-            
         except Exception as e:
             self.logger.error(f"Error formatting sentiment analysis: {str(e)}", exc_info=True)
             raise
@@ -249,6 +261,187 @@ class ReportingAgent:
             self.logger.error(f"Error generating recommendations: {str(e)}", exc_info=True)
             raise
 
+    def _generate_visualization_data(self, portfolio: List[Dict], market_data: Dict, performance: Dict, sentiment: Dict) -> Dict:
+        """
+        Generate data structures for frontend visualizations.
+        
+        Args:
+            portfolio (List[Dict]): Portfolio positions
+            market_data (Dict): Market data
+            performance (Dict): Performance metrics
+            sentiment (Dict): Sentiment analysis
+            
+        Returns:
+            Dict: Visualization data structures
+        """
+        try:
+            # Portfolio composition pie chart
+            composition_data = {
+                'type': 'pie',
+                'labels': [pos['symbol'] for pos in portfolio],
+                'values': [pos['quantity'] * market_data[pos['symbol']]['current_price'] for pos in portfolio],
+                'title': 'Portfolio Composition'
+            }
+
+            # Performance trend line chart
+            performance_data = {
+                'type': 'line',
+                'x': [datetime.now().isoformat()],
+                'y': [performance['return_percentage']],
+                'title': 'Portfolio Performance Trend'
+            }
+
+            # Sentiment gauge chart
+            sentiment_data = {
+                'type': 'gauge',
+                'value': sentiment['sentiment_strength'],
+                'title': 'Market Sentiment',
+                'min': 0,
+                'max': 1
+            }
+
+            # Risk metrics bar chart
+            risk_data = {
+                'type': 'bar',
+                'labels': ['HHI', 'Top 3 Concentration', 'Volatility'],
+                'values': [
+                    market_data.get('hhi', 0),
+                    market_data.get('top_3_concentration', 0),
+                    market_data.get('volatility', 0)
+                ],
+                'title': 'Risk Metrics'
+            }
+
+            return {
+                'composition': composition_data,
+                'performance': performance_data,
+                'sentiment': sentiment_data,
+                'risk': risk_data
+            }
+
+        except Exception as e:
+            self.logger.error(f"Error generating visualization data: {str(e)}")
+            raise
+
+    def _save_report(self, report: Dict) -> None:
+        """
+        Save report for historical comparison.
+        
+        Args:
+            report (Dict): Generated report
+        """
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            report_path = self.reports_dir / f"report_{timestamp}.json"
+            
+            with open(report_path, 'w') as f:
+                json.dump(report, f, indent=2)
+            
+            self.logger.info(f"Saved report to {report_path}")
+            
+        except Exception as e:
+            self.logger.error(f"Error saving report: {str(e)}")
+            raise
+
+    async def export_report(self, report: Dict, format: str = 'json') -> bytes:
+        """
+        Export report in specified format.
+        
+        Args:
+            report (Dict): Report to export
+            format (str): Export format ('json', 'csv', 'pdf')
+            
+        Returns:
+            bytes: Exported report data
+        """
+        try:
+            if format == 'json':
+                return json.dumps(report, indent=2).encode()
+            
+            elif format == 'csv':
+                # Convert relevant sections to DataFrame
+                df = pd.DataFrame(report['portfolio_summary']['positions'])
+                return df.to_csv(index=False).encode()
+            
+            elif format == 'pdf':
+                # Generate PDF using plotly
+                fig = go.Figure()
+                
+                # Add portfolio composition pie chart
+                fig.add_trace(go.Pie(
+                    labels=report['visualization_data']['composition']['labels'],
+                    values=report['visualization_data']['composition']['values'],
+                    name="Portfolio Composition"
+                ))
+                
+                # Add performance line chart
+                fig.add_trace(go.Scatter(
+                    x=report['visualization_data']['performance']['x'],
+                    y=report['visualization_data']['performance']['y'],
+                    name="Performance"
+                ))
+                
+                # Save as PDF
+                pdf_path = self.reports_dir / f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                fig.write_image(str(pdf_path))
+                
+                with open(pdf_path, 'rb') as f:
+                    return f.read()
+            
+            else:
+                raise ValueError(f"Unsupported export format: {format}")
+            
+        except Exception as e:
+            self.logger.error(f"Error exporting report: {str(e)}")
+            raise
+
+    async def get_historical_comparison(self, current_report: Dict, lookback_days: int = 30) -> Dict:
+        """
+        Compare current report with historical reports.
+        
+        Args:
+            current_report (Dict): Current report
+            lookback_days (int): Number of days to look back
+            
+        Returns:
+            Dict: Comparison data
+        """
+        try:
+            # Get historical reports
+            historical_reports = []
+            cutoff_date = datetime.now() - timedelta(days=lookback_days)
+            
+            for report_file in self.reports_dir.glob("report_*.json"):
+                try:
+                    with open(report_file, 'r') as f:
+                        report = json.load(f)
+                        report_date = datetime.fromisoformat(report['timestamp'])
+                        if report_date >= cutoff_date:
+                            historical_reports.append(report)
+                except Exception as e:
+                    self.logger.warning(f"Error reading report {report_file}: {str(e)}")
+            
+            # Generate comparison metrics
+            comparison = {
+                'performance_trend': {
+                    'dates': [r['timestamp'] for r in historical_reports],
+                    'values': [r['performance_analysis']['return_percentage'] for r in historical_reports]
+                },
+                'risk_trend': {
+                    'dates': [r['timestamp'] for r in historical_reports],
+                    'values': [r['risk_analysis']['portfolio_volatility'] for r in historical_reports]
+                },
+                'sentiment_trend': {
+                    'dates': [r['timestamp'] for r in historical_reports],
+                    'values': [r['market_sentiment']['sentiment_strength'] for r in historical_reports]
+                }
+            }
+            
+            return comparison
+            
+        except Exception as e:
+            self.logger.error(f"Error generating historical comparison: {str(e)}")
+            raise
 # Create the ADK tool
 @FunctionTool
 def generate_portfolio_report_tool(
@@ -270,3 +463,4 @@ reporting_agent = LlmAgent(
     description="Generates comprehensive portfolio reports.",
     tools=[generate_portfolio_report_tool],
 )
+

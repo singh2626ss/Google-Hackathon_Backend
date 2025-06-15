@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analysis Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Portfolio Analysis Dashboard</h1>
+        
+        <!-- Input Form -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Portfolio Input</h2>
+            <form id="portfolioForm" class="space-y-4">
+                <div id="positions">
+                    <div class="position-entry grid grid-cols-4 gap-4 mb-4">
+                        <input type="text" placeholder="Symbol" class="border p-2 rounded" required>
+                        <input type="number" placeholder="Quantity" class="border p-2 rounded" required>
+                        <input type="number" placeholder="Purchase Price" class="border p-2 rounded" required>
+                        <button type="button" class="remove-position bg-red-500 text-white px-4 py-2 rounded">Remove</button>
+                    </div>
+                </div>
+                <button type="button" id="addPosition" class="bg-blue-500 text-white px-4 py-2 rounded">Add Position</button>
+                
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <select id="riskTolerance" class="border p-2 rounded">
+                        <option value="conservative">Conservative</option>
+                        <option value="moderate" selected>Moderate</option>
+                        <option value="aggressive">Aggressive</option>
+                    </select>
+                    
+                    <select id="timeHorizon" class="border p-2 rounded">
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value="5-10 years" selected>5-10 years</option>
+                        <option value="10+ years">10+ years</option>
+                    </select>
+                    
+                    <select id="investmentGoals" class="border p-2 rounded" multiple>
+                        <option value="growth">Growth</option>
+                        <option value="income">Income</option>
+                        <option value="preservation">Capital Preservation</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded">Analyze Portfolio</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="hidden">
+            <!-- Portfolio Summary -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Portfolio Summary</h2>
+                <div id="portfolioSummary" class="grid grid-cols-2 gap-4"></div>
+            </div>
+
+            <!-- Performance Analysis -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Performance Analysis</h2>
+                <div id="performanceAnalysis"></div>
+            </div>
+
+            <!-- Risk Analysis -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Risk Analysis</h2>
+                <div id="riskAnalysis"></div>
+            </div>
+
+            <!-- Market Sentiment -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Market Sentiment</h2>
+                <div id="marketSentiment"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">Recommendations</h2>
+                <div id="recommendations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('addPosition').addEventListener('click', () => {
+            const positions = document.getElementById('positions');
+            const newPosition = document.querySelector('.position-entry').cloneNode(true);
+            newPosition.querySelectorAll('input').forEach(input => input.value = '');
+            positions.appendChild(newPosition);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-position')) {
+                if (document.querySelectorAll('.position-entry').length > 1) {
+                    e.target.closest('.position-entry').remove();
+                }
+            }
+        });
+
+        document.getElementById('portfolioForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const positions = Array.from(document.querySelectorAll('.position-entry')).map(entry => {
+                const [symbol, quantity, price] = entry.querySelectorAll('input');
+                return {
+                    symbol: symbol.value,
+                    quantity: parseInt(quantity.value),
+                    purchase_price: parseFloat(price.value)
+                };
+            });
+
+            const data = {
+                portfolio: positions,
+                risk_tolerance: document.getElementById('riskTolerance').value,
+                investment_goals: Array.from(document.getElementById('investmentGoals').selectedOptions).map(opt => opt.value),
+                time_horizon: document.getElementById('timeHorizon').value
+            };
+
+            try {
+                const response = await fetch('/analyze-portfolio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                displayResults(result);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error analyzing portfolio. Please try again.');
+            }
+        });
+
+        function displayResults(data) {
+            document.getElementById('results').classList.remove('hidden');
+            
+            // Display Portfolio Summary
+            const summary = data.portfolio_summary;
+            document.getElementById('portfolioSummary').innerHTML = `
+                <div class="p-4 bg-gray-50 rounded">
+                    <h3 class="font-semibold">Total Positions: ${summary.number_of_positions}</h3>
+                    <div class="mt-2">
+                        ${summary.positions.map(pos => `
+                            <div class="mb-2">
+                                <strong>${pos.symbol}:</strong> ${pos.quantity} shares @ $${pos.purchase_price}
+                                <br>Current Value: $${pos.position_value.toFixed(2)}
+                                <br>Return: ${pos.return_percentage.toFixed(2)}%
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Display Performance Analysis
+            const perf = data.performance_analysis;
+            document.getElementById('performanceAnalysis').innerHTML = `
+                <div class="p-4 bg-gray-50 rounded">
+                    <p><strong>Total Cost:</strong> $${perf.total_cost.toFixed(2)}</p>
+                    <p><strong>Current Value:</strong> $${perf.current_value.toFixed(2)}</p>
+                    <p><strong>Total Return:</strong> $${perf.total_return.toFixed(2)}</p>
+                    <p><strong>Return Percentage:</strong> ${perf.return_percentage.toFixed(2)}%</p>
+                </div>
+            `;
+
+            // Display Risk Analysis
+            const risk = data.risk_analysis;
+            document.getElementById('riskAnalysis').innerHTML = `
+                <div class="p-4 bg-gray-50 rounded">
+                    <p><strong>Risk Level:</strong> ${risk.risk_level}</p>
+                    <p><strong>HHI Index:</strong> ${risk.concentration_metrics.hhi.toFixed(4)}</p>
+                    <p><strong>Top 3 Concentration:</strong> ${(risk.concentration_metrics.top_3_concentration * 100).toFixed(2)}%</p>
+                </div>
+            `;
+
+            // Display Market Sentiment
+            const sentiment = data.market_sentiment;
+            document.getElementById('marketSentiment').innerHTML = `
+                <div class="p-4 bg-gray-50 rounded">
+                    <p><strong>Overall Sentiment:</strong> ${sentiment.overall_sentiment}</p>
+                    <p><strong>Sentiment Strength:</strong> ${(sentiment.sentiment_strength * 100).toFixed(2)}%</p>
+                    <p><strong>Subjectivity:</strong> ${(sentiment.subjectivity * 100).toFixed(2)}%</p>
+                </div>
+            `;
+
+            // Display Recommendations
+            document.getElementById('recommendations').innerHTML = `
+                <div class="p-4 bg-gray-50 rounded">
+                    ${data.recommendations.map(rec => `
+                        <div class="mb-4">
+                            <p class="font-semibold">${rec.action}</p>
+                            <p class="text-gray-600">${rec.details}</p>
+                            <span class="inline-block px-2 py-1 text-sm rounded ${rec.priority === 'high' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'}">
+                                ${rec.priority} priority
+                            </span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html> 

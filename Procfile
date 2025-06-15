@@ -1,1 +1,1 @@
-web: poetry run adk api_server --host 0.0.0.0 --port $PORT 
+web: poetry run uvicorn app:app --host 0.0.0.0 --port $PORT 

@@ -133,7 +133,6 @@ class RiskAssessmentAgent:
             return 'moderate'
         else:
             return 'low'
-
 # Create the ADK tool
 @FunctionTool
 def assess_portfolio_risk_tool(portfolio: List[Dict], market_data: Dict) -> Dict:
@@ -148,3 +147,4 @@ risk_agent = LlmAgent(
     description="Assesses portfolio risk and provides recommendations.",
     tools=[assess_portfolio_risk_tool],
 )
+
