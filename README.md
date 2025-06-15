@@ -1,6 +1,6 @@
 # Portfolio Management API
 
-A FastAPI-based portfolio management system that provides comprehensive analysis of investment portfolios using various agents for market data, sentiment analysis, risk assessment, and personalized recommendations.
+ A FastAPI-based portfolio management system that provides comprehensive analysis of investment portfolios using various agents for market data, sentiment analysis, risk assessment, and personalized recommendations.
 
 ## Features
 
