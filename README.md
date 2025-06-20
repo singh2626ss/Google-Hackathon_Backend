@@ -6,11 +6,14 @@ An AI-powered portfolio management system with real-time market analysis, sentim
 
 - **Portfolio Analysis**: Comprehensive portfolio performance and risk assessment
 - **Market Data Integration**: Real-time market data using Alpha Vantage API
-- **Sentiment Analysis**: News sentiment analysis for portfolio stocks
-- **AI Insights**: Natural language Q&A about portfolios and markets
+- **Sentiment Analysis**: News sentiment analysis for portfolio stocks with real-time news aggregation
+- **AI Insights**: Natural language Q&A about portfolios and markets with intelligent responses
+- **News Summary**: Automated news summarization and sentiment trends for portfolio stocks
 - **Risk Assessment**: Advanced risk metrics and volatility calculations
 - **Goal-based Forecasting**: Investment projections based on goals and time horizon
 - **Interactive Dashboard**: Beautiful web interface with real-time updates
+- **Report Generation**: Comprehensive PDF and JSON reports with visualizations
+- **Historical Comparison**: Portfolio performance tracking over time
 
 ## Quick Start
 
@@ -54,38 +57,85 @@ poetry run uvicorn app:app --host 0.0.0.0 --port 8000
 
 ## API Endpoints
 
-- `GET /` - Web dashboard
-- `POST /analyze-portfolio` - Portfolio analysis
-- `POST /ai-insights` - AI-powered insights
-- `POST /export-report` - Export reports
-- `POST /historical-comparison` - Historical data comparison
-- `GET /health` - Health check
+- `GET /` - Web dashboard with interactive portfolio analysis
+- `POST /analyze-portfolio` - Comprehensive portfolio analysis with AI insights
+- `POST /ai-insights` - Natural language Q&A about portfolios and markets
+- `POST /export-report` - Export detailed reports in PDF/JSON format
+- `POST /historical-comparison` - Historical data comparison and trends
+- `GET /health` - Health check endpoint
 
 ## Architecture
 
 The system uses a multi-agent architecture with Google ADK:
 
-- **Market Data Agent**: Fetches real-time and historical market data from Alpha Vantage
-- **Sentiment Analysis Agent**: Analyzes news sentiment for stocks
-- **Risk Assessment Agent**: Calculates portfolio risk metrics
-- **Reporting Agent**: Generates comprehensive reports
-- **AI Insights Agent**: Provides natural language Q&A
-- **Personalization Agent**: Goal-based forecasting and recommendations
+- **Market Data Agent**: Fetches real-time and historical market data from Alpha Vantage API
+- **Sentiment Analysis Agent**: Analyzes news sentiment for stocks with real-time news aggregation
+- **Risk Assessment Agent**: Calculates portfolio risk metrics and volatility analysis
+- **Reporting Agent**: Generates comprehensive reports with visualizations
+- **AI Insights Agent**: Provides natural language Q&A and intelligent portfolio recommendations
+- **Personalization Agent**: Goal-based forecasting and personalized recommendations
+
+## AI Features
+
+### Natural Language Q&A
+- Ask questions about your portfolio performance
+- Get investment advice and market insights
+- Receive personalized recommendations based on your goals
+
+### News Sentiment Analysis
+- Real-time news aggregation for portfolio stocks
+- Sentiment scoring and trend analysis
+- Automated news summaries with key insights
+
+### Risk Assessment
+- Portfolio volatility calculations
+- Concentration risk analysis
+- Diversification scoring
+- Risk level classification
+
+### Portfolio Forecasting
+- Goal-based investment projections
+- Multiple scenario analysis (conservative, moderate, aggressive)
+- Time horizon-based planning
 
 ## Project Structure
 
 ```
-portfolio_manager_adk/
+Google-Hackathon_Backend/
 ├── agent/
 │   ├── sentiment_analysis_agent.py
 │   ├── market_data_agent.py
 │   ├── risk_assessment_agent.py
 │   ├── reporting_agent.py
-│   └── personalization_agent.py
+│   ├── personalization_agent.py
+│   └── ai_insights_agent.py
+├── static/
+│   ├── css/
+│   └── js/
+├── templates/
+├── reports/
 ├── app.py
-├── test_api.py
 ├── pyproject.toml
+├── .env
 └── README.md
+```
+
+## Deployment
+
+### Google Cloud Run
+1. Set environment variables in Cloud Run:
+   - `ALPHA_VANTAGE_API_KEY`
+   - `NEWS_API_KEY`
+   - `GOOGLE_CLOUD_API_KEY`
+
+2. Deploy using gcloud:
+```bash
+gcloud run deploy portfolio-manager --source .
+```
+
+### Local Development
+```bash
+poetry run uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ## Contributing
