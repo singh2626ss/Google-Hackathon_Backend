@@ -3,6 +3,7 @@ Main FastAPI application for the portfolio management system.
 """
 
 import logging
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Response, Request
 from fastapi.responses import StreamingResponse, HTMLResponse
@@ -31,6 +32,15 @@ app = FastAPI(
     title="Portfolio Management API",
     description="API for portfolio management and analysis",
     version="1.0.0"
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Mount templates and static files

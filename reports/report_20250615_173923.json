@@ -1,0 +1,96 @@
+{
+  "timestamp": "2025-06-15T17:39:23.698143",
+  "portfolio_summary": {
+    "number_of_positions": 2,
+    "positions": [
+      {
+        "symbol": "ANF",
+        "quantity": 4000,
+        "purchase_price": 4000,
+        "current_price": 74.66,
+        "position_value": 298640.0,
+        "return_percentage": -98.13350000000001
+      },
+      {
+        "symbol": "GAP",
+        "quantity": 300,
+        "purchase_price": 5000,
+        "current_price": 20.86,
+        "position_value": 6258.0,
+        "return_percentage": -99.5828
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 17500000,
+    "current_value": 304898.0,
+    "total_return": -17195102.0,
+    "return_percentage": -98.25772571428571
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 0.9597927490799676,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": "N/A"
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.13145115172892952,
+    "subjectivity": 0.45946435251990814
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "ANF",
+        "GAP"
+      ],
+      "values": [
+        298640.0,
+        6258.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-15T17:39:23.698140"
+      ],
+      "y": [
+        -98.25772571428571
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.13145115172892952,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    }
+  }
+}

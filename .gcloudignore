@@ -1,0 +1,14 @@
+# Ignore everything else by default (optional)
+.gcloud/
+.git/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.DS_Store
+
+# But include .env explicitly
+!.env
