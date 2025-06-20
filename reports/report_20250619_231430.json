@@ -1,0 +1,383 @@
+{
+  "timestamp": "2025-06-19T23:14:30.386583",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 196.58,
+        "position_value": 1965.8000000000002,
+        "return_percentage": 31.053333333333345
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1500.0,
+    "current_value": 1965.8000000000002,
+    "total_return": 465.8000000000002,
+    "return_percentage": 31.053333333333345
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0.25592512066166384
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.14048148148148148,
+    "subjectivity": 0.29885185185185187,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.14048148148148148,
+          "subjectivity": 0.29885185185185187,
+          "confidence": 0.14048148148148148,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Nvidia (NVDA) Could Hit $5 Trillion as Analysts Lift Price Targets",
+            "sentiment": {
+              "polarity": -0.1,
+              "subjectivity": 0.1,
+              "confidence": 0.1,
+              "timestamp": "2025-06-19T23:14:29.739019",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T02:54:07Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Investigating Apple's Standing In Technology Hardware, Storage & Peripherals Industry Compared To Competitors",
+            "sentiment": {
+              "polarity": 0.03,
+              "subjectivity": 0.77,
+              "confidence": 0.03,
+              "timestamp": "2025-06-19T23:14:29.739534",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T15:16:29Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "\u2018It Has No Utility\u2019: Warren Buffett Doesn\u2019t Care How High Gold Goes, He Isn\u2019t a Buyer",
+            "sentiment": {
+              "polarity": 0.16,
+              "subjectivity": 0.54,
+              "confidence": 0.16,
+              "timestamp": "2025-06-19T23:14:29.739843",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:54:52Z",
+            "source": "Barchart.com"
+          },
+          {
+            "headline": "Apple Just Snatched Back the Top Spot in China Smartphone Sales. Should You Buy AAPL Stock Here?",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.25,
+              "confidence": 0.25,
+              "timestamp": "2025-06-19T23:14:29.740011",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:31:28Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Today in Apple history: John Sculley steps down as Apple CEO",
+            "sentiment": {
+              "polarity": 0.11481481481481481,
+              "subjectivity": 0.42962962962962964,
+              "confidence": 0.11481481481481481,
+              "timestamp": "2025-06-19T23:14:29.740292",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:30:22Z",
+            "source": "Cult of Mac"
+          },
+          {
+            "headline": "Apple Just Snatched Back the Top Spot in China Smartphone Sales. Should You Buy AAPL Stock Here?",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.25,
+              "confidence": 0.25,
+              "timestamp": "2025-06-19T23:14:29.740517",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:30:02Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "3 Big AI Dividends Cashing In On The Next Big Leap",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.06000000000000001,
+              "confidence": 0.0,
+              "timestamp": "2025-06-19T23:14:29.740751",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T13:58:00Z",
+            "source": "Forbes"
+          },
+          {
+            "headline": "Analysts Cover Apple (NASDAQ:AAPL) After WWDC, Citi Maintains Buy",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-19T23:14:29.740985",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T13:55:25Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Promising Music Stocks To Watch Today \u2013 June 16th",
+            "sentiment": {
+              "polarity": 0.20000000000000004,
+              "subjectivity": 0.3,
+              "confidence": 0.20000000000000004,
+              "timestamp": "2025-06-19T23:14:29.741390",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T08:21:04Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Top Fitness Stocks To Follow Now \u2013 June 16th",
+            "sentiment": {
+              "polarity": 0.5,
+              "subjectivity": 0.2888888888888889,
+              "confidence": 0.5,
+              "timestamp": "2025-06-19T23:14:29.741772",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T08:21:03Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-19T23:14:29.741807"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 0
+    },
+    "news_summary": "Recent market news shows positive sentiment. Top stories include: 'Nvidia (NVDA) Could Hit $5 Trillion as Analysts Lift Price T...' and 'Investigating Apple's Standing In Technology Hardware, Stora...'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [],
+        "stable": [
+          "AAPL"
+        ]
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 0,
+        "stable_count": 1
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL"
+      ],
+      "values": [
+        1965.8000000000002
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-18",
+        "2025-06-17",
+        "2025-06-16",
+        "2025-06-13",
+        "2025-06-12",
+        "2025-06-11",
+        "2025-06-10",
+        "2025-06-09",
+        "2025-06-06",
+        "2025-06-05",
+        "2025-06-04",
+        "2025-06-03",
+        "2025-06-02",
+        "2025-05-30",
+        "2025-05-29",
+        "2025-05-28",
+        "2025-05-27",
+        "2025-05-23",
+        "2025-05-22",
+        "2025-05-21",
+        "2025-05-20",
+        "2025-05-19",
+        "2025-05-16",
+        "2025-05-15",
+        "2025-05-14",
+        "2025-05-13",
+        "2025-05-12",
+        "2025-05-09",
+        "2025-05-08",
+        "2025-05-07"
+      ],
+      "y": [
+        1965.8000000000002,
+        1956.3999999999999,
+        1984.1999999999998,
+        1964.5,
+        1992.0,
+        1987.8,
+        2026.6999999999998,
+        2014.5,
+        2039.1999999999998,
+        2006.3,
+        2028.1999999999998,
+        2032.7,
+        2017.0,
+        2008.5,
+        1999.5,
+        2004.1999999999998,
+        2002.1000000000001,
+        1952.7,
+        2013.6000000000001,
+        2020.9,
+        2068.6000000000004,
+        2087.8,
+        2112.6,
+        2114.5,
+        2123.3,
+        2129.3,
+        2107.9,
+        1985.3,
+        1974.9,
+        1962.5
+      ],
+      "title": "Portfolio Performance Trend (30 Days)"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.14048148148148148,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "AAPL Vol"
+      ],
+      "values": [
+        0.25592512066166384
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 1965.8000000000002,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2064.09,
+              "growth": 4.999999999999997
+            },
+            {
+              "year": 3,
+              "value": 2275.6592250000003,
+              "growth": 15.762500000000006
+            },
+            {
+              "year": 5,
+              "value": 2508.914295562501,
+              "growth": 27.628156250000046
+            },
+            {
+              "year": 10,
+              "value": 3202.0810573190956,
+              "growth": 62.88946267774419
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2123.0640000000003,
+              "growth": 8.000000000000005
+            },
+            {
+              "year": 3,
+              "value": 2476.3418496000004,
+              "growth": 25.971200000000007
+            },
+            {
+              "year": 5,
+              "value": 2888.4051333734415,
+              "growth": 46.93280768000006
+            },
+            {
+              "year": 10,
+              "value": 4244.014759638848,
+              "growth": 115.89249972727885
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2201.6960000000004,
+              "growth": 12.000000000000007
+            },
+            {
+              "year": 3,
+              "value": 2761.807462400001,
+              "growth": 40.49280000000004
+            },
+            {
+              "year": 5,
+              "value": 3464.4112808345617,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 6105.476407963052,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

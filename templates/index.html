@@ -50,6 +50,22 @@
             </form>
         </div>
 
+        <!-- Ask AI - Always Visible -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Ask AI</h2>
+            <div class="space-y-4">
+                <div class="flex space-x-2">
+                    <input type="text" id="aiQuestion" placeholder="Ask me about your portfolio, stocks, or market trends..." class="flex-1 border p-2 rounded">
+                    <button id="askAI" class="bg-purple-500 text-white px-4 py-2 rounded">Ask</button>
+                </div>
+                <div id="aiResponse" class="hidden">
+                    <div class="p-4 bg-purple-50 rounded border-l-4 border-purple-500">
+                        <p id="aiInsight" class="text-gray-800"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Results Section -->
         <div id="results" class="hidden">
             <!-- Portfolio Summary -->
@@ -76,6 +92,12 @@
                 <div id="marketSentiment"></div>
             </div>
 
+            <!-- Market News Summary -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Market News Summary</h2>
+                <div id="marketNewsSummary"></div>
+            </div>
+
             <!-- Recommendations -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold mb-4">Recommendations</h2>
@@ -85,6 +107,24 @@
     </div>
 
     <script>
+        // Global variables to store portfolio data for AI insights
+        let currentPortfolioData = null;
+        let currentMarketContext = null;
+
+        // Notification system for errors
+        function showNotification(message, type = 'error') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+                type === 'error' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'
+            }`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
         document.getElementById('addPosition').addEventListener('click', () => {
             const positions = document.getElementById('positions');
             const newPosition = document.querySelector('.position-entry').cloneNode(true);
@@ -128,11 +168,72 @@
                     body: JSON.stringify(data)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const result = await response.json();
+                
+                // Store data for AI insights
+                currentPortfolioData = result;
+                currentMarketContext = result.market_sentiment;
+                
                 displayResults(result);
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error analyzing portfolio. Please try again.');
+                showNotification(`Error analyzing portfolio: ${error.message}`, 'error');
+            }
+        });
+
+        // AI Insights functionality
+        document.getElementById('askAI').addEventListener('click', async () => {
+            const question = document.getElementById('aiQuestion').value.trim();
+            if (!question) {
+                showNotification('Please enter a question', 'error');
+                return;
+            }
+
+            const askButton = document.getElementById('askAI');
+            const originalText = askButton.textContent;
+            askButton.textContent = 'Thinking...';
+            askButton.disabled = true;
+
+            try {
+                const response = await fetch('/ai-insights', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_question: question,
+                        portfolio_data: currentPortfolioData,
+                        market_context: currentMarketContext
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                document.getElementById('aiResponse').classList.remove('hidden');
+                document.getElementById('aiInsight').textContent = result.nlp_insight;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification(`Error getting AI insights: ${error.message}`, 'error');
+                document.getElementById('aiResponse').classList.add('hidden');
+            } finally {
+                askButton.textContent = originalText;
+                askButton.disabled = false;
+            }
+        });
+
+        // Allow Enter key to submit AI question
+        document.getElementById('aiQuestion').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('askAI').click();
             }
         });
 
@@ -186,6 +287,21 @@
                     <p><strong>Subjectivity:</strong> ${(sentiment.subjectivity * 100).toFixed(2)}%</p>
                 </div>
             `;
+
+            // Display Market News Summary
+            if (sentiment.news_summary) {
+                document.getElementById('marketNewsSummary').innerHTML = `
+                    <div class="p-4 bg-gray-50 rounded">
+                        <p class="text-gray-800">${sentiment.news_summary}</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('marketNewsSummary').innerHTML = `
+                    <div class="p-4 bg-gray-50 rounded">
+                        <p class="text-gray-600">No recent news summary available.</p>
+                    </div>
+                `;
+            }
 
             // Display Recommendations
             document.getElementById('recommendations').innerHTML = `

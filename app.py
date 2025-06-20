@@ -19,6 +19,36 @@ from agent.market_data_agent import MarketDataAgent
 from agent.risk_assessment_agent import RiskAssessmentAgent
 from agent.reporting_agent import ReportingAgent
 from agent.personalization_agent import PersonalizationAgent
+from agent.ai_insights_agent import AIInsightsAgent
+
+# Define request/response models
+class PortfolioRequest(BaseModel):
+    portfolio: List[dict]
+    risk_tolerance: str
+    investment_goals: List[str]
+    time_horizon: str
+    user_id: Optional[str] = None
+
+class ExportRequest(BaseModel):
+    report: Dict
+    format: str = 'json'
+
+class HistoricalComparisonRequest(BaseModel):
+    report: Dict
+    lookback_days: int = 30
+
+class AIInsightRequest(BaseModel):
+    user_question: str
+    portfolio_data: Optional[Dict] = None
+    market_context: Optional[Dict] = None
+
+class PortfolioResponse(BaseModel):
+    timestamp: str
+    portfolio_summary: Dict
+    performance_analysis: Dict
+    risk_analysis: Dict
+    market_sentiment: Dict
+    recommendations: List[dict]
 
 # Configure logging
 logging.basicConfig(
@@ -53,30 +83,7 @@ market_data_agent = MarketDataAgent()
 risk_agent = RiskAssessmentAgent()
 reporting_agent = ReportingAgent()
 personalization_agent = PersonalizationAgent()
-
-# Define request/response models
-class PortfolioRequest(BaseModel):
-    portfolio: List[dict]
-    risk_tolerance: str
-    investment_goals: List[str]
-    time_horizon: str
-    user_id: Optional[str] = None
-
-class ExportRequest(BaseModel):
-    report: Dict
-    format: str = 'json'
-
-class HistoricalComparisonRequest(BaseModel):
-    report: Dict
-    lookback_days: int = 30
-
-class PortfolioResponse(BaseModel):
-    timestamp: str
-    portfolio_summary: Dict
-    performance_analysis: Dict
-    risk_analysis: Dict
-    market_sentiment: Dict
-    recommendations: List[dict]
+ai_insights_agent = AIInsightsAgent()
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
@@ -99,7 +106,6 @@ async def analyze_portfolio(request: PortfolioRequest):
             quantity = position['quantity']
             purchase_price = position['purchase_price']
             quote = await market_data_agent.get_stock_quote(symbol)
-            sentiment = await sentiment_agent.get_market_sentiment(symbol)
             current_price = quote['current_price']
             position_value = quantity * current_price
             return {
@@ -109,18 +115,18 @@ async def analyze_portfolio(request: PortfolioRequest):
                 'current_price': current_price,
                 'position_value': position_value,
                 'return_percentage': ((current_price - purchase_price) / purchase_price) * 100,
-                'sentiment': sentiment['sentiment'] if 'sentiment' in sentiment else sentiment
             }, quote
         
         results = await asyncio.gather(*(get_data(pos) for pos in portfolio))
         portfolio_data = [r[0] for r in results]
         market_data = {pos['symbol']: quote for pos, (_, quote) in zip(portfolio, results)}
         
+        # Get symbol-specific sentiment analysis
+        symbols = [pos['symbol'] for pos in portfolio]
+        sentiment_analysis = await sentiment_agent.get_portfolio_sentiment_summary(symbols)
+        
         # Calculate risk metrics
         risk_metrics = await risk_agent.calculate_portfolio_risk(portfolio, market_data)
-        
-        # Aggregate sentiment for the whole portfolio (optional: use first symbol's sentiment for now)
-        sentiment_analysis = portfolio_data[0]['sentiment'] if portfolio_data else {}
         
         # Generate portfolio report
         report = await reporting_agent.generate_portfolio_report(
@@ -197,6 +203,30 @@ async def get_historical_comparison(request: HistoricalComparisonRequest):
         
     except Exception as e:
         logger.error(f"Error generating historical comparison: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/ai-insights")
+async def get_ai_insights(request: AIInsightRequest):
+    """
+    Get AI-generated insights based on natural language questions about portfolio and market.
+    """
+    try:
+        logger.info(f"Generating AI insights for question: {request.user_question[:100]}...")
+        
+        nlp_insight = await ai_insights_agent.generate_nlp_insight(
+            user_question=request.user_question,
+            portfolio_data=request.portfolio_data,
+            market_context=request.market_context
+        )
+        
+        return {
+            "nlp_insight": nlp_insight,
+            "timestamp": datetime.now().isoformat(),
+            "user_question": request.user_question
+        }
+        
+    except Exception as e:
+        logger.error(f"Error generating AI insights: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Create the main portfolio agent

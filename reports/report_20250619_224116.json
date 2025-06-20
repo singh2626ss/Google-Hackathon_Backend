@@ -1,0 +1,183 @@
+{
+  "timestamp": "2025-06-19T22:41:16.756604",
+  "portfolio_summary": {
+    "number_of_positions": 2,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 196.58,
+        "position_value": 1965.8000000000002,
+        "return_percentage": 31.053333333333345
+      },
+      {
+        "symbol": "MSFT",
+        "quantity": 5,
+        "purchase_price": 300.0,
+        "current_price": 480.24,
+        "position_value": 2401.2,
+        "return_percentage": 60.08
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 3000.0,
+    "current_value": 4367.0,
+    "total_return": 1367.0,
+    "return_percentage": 45.56666666666666
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 0.5049702755888892,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0
+  },
+  "market_sentiment": {
+    "overall_sentiment": "neutral",
+    "sentiment_strength": 0.0,
+    "subjectivity": 0.4143577441077441
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL",
+        "MSFT"
+      ],
+      "values": [
+        1965.8000000000002,
+        2401.2
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-19"
+      ],
+      "y": [
+        4367.0
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.0,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 4367.0,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4585.35,
+              "growth": 5.000000000000009
+            },
+            {
+              "year": 3,
+              "value": 5055.3483750000005,
+              "growth": 15.76250000000001
+            },
+            {
+              "year": 5,
+              "value": 5573.521583437501,
+              "growth": 27.62815625000003
+            },
+            {
+              "year": 10,
+              "value": 7113.382835137089,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4716.360000000001,
+              "growth": 8.000000000000012
+            },
+            {
+              "year": 3,
+              "value": 5501.162304,
+              "growth": 25.97120000000001
+            },
+            {
+              "year": 5,
+              "value": 6416.555711385602,
+              "growth": 46.932807680000046
+            },
+            {
+              "year": 10,
+              "value": 9428.025463090265,
+              "growth": 115.8924997272788
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4891.040000000001,
+              "growth": 12.00000000000002
+            },
+            {
+              "year": 3,
+              "value": 6135.320576000002,
+              "growth": 40.492800000000045
+            },
+            {
+              "year": 5,
+              "value": 7696.146130534403,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 13563.239125839174,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

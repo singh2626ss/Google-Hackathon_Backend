@@ -201,6 +201,264 @@ class SentimentAnalysisAgent:
             self.logger.error(f"Error getting sentiment trend for {symbol}: {str(e)}")
             raise
 
+    async def get_symbol_sentiment(self, symbol: str) -> Dict:
+        """
+        Get detailed sentiment analysis for a specific symbol with headlines.
+        
+        Args:
+            symbol (str): Stock symbol to analyze
+            
+        Returns:
+            Dict: Detailed sentiment analysis with headlines
+        """
+        try:
+            self.logger.info(f"Getting detailed sentiment for {symbol}")
+            
+            # Fetch news for the symbol
+            news_items = await self.fetch_news(symbol)
+            
+            if not news_items:
+                return {
+                    'symbol': symbol,
+                    'sentiment': {
+                        'category': 'neutral',
+                        'polarity': 0.0,
+                        'subjectivity': 0.0,
+                        'confidence': 0.0
+                    },
+                    'headlines': [],
+                    'trend': 'stable',
+                    'timestamp': datetime.now().isoformat()
+                }
+            
+            # Analyze sentiment for each headline
+            headline_sentiments = []
+            for item in news_items[:10]:  # Limit to 10 most recent articles
+                headline = item.get('title', '')
+                content = item.get('description', '')
+                text = f"{headline} {content}"
+                
+                sentiment = await self.analyze_sentiment(text)
+                headline_sentiments.append({
+                    'headline': headline,
+                    'sentiment': sentiment,
+                    'published_at': item.get('publishedAt', ''),
+                    'source': item.get('source', {}).get('name', '')
+                })
+            
+            # Calculate aggregate sentiment
+            if headline_sentiments:
+                polarities = [h['sentiment']['polarity'] for h in headline_sentiments]
+                subjectivities = [h['sentiment']['subjectivity'] for h in headline_sentiments]
+                
+                aggregate_sentiment = {
+                    'category': 'neutral',
+                    'polarity': sum(polarities) / len(polarities),
+                    'subjectivity': sum(subjectivities) / len(subjectivities),
+                    'confidence': abs(sum(polarities) / len(polarities)),
+                    'article_count': len(headline_sentiments)
+                }
+                
+                # Determine category
+                if aggregate_sentiment['polarity'] > 0.1:
+                    aggregate_sentiment['category'] = 'positive'
+                elif aggregate_sentiment['polarity'] < -0.1:
+                    aggregate_sentiment['category'] = 'negative'
+                
+                # Determine trend based on recent vs older articles
+                if len(headline_sentiments) >= 2:
+                    recent_polarities = [h['sentiment']['polarity'] for h in headline_sentiments[:5]]
+                    older_polarities = [h['sentiment']['polarity'] for h in headline_sentiments[5:]]
+                    
+                    if recent_polarities and older_polarities:
+                        recent_avg = sum(recent_polarities) / len(recent_polarities)
+                        older_avg = sum(older_polarities) / len(older_polarities)
+                        
+                        if recent_avg > older_avg + 0.1:
+                            trend = 'improving'
+                        elif recent_avg < older_avg - 0.1:
+                            trend = 'declining'
+                        else:
+                            trend = 'stable'
+                    else:
+                        trend = 'stable'
+                else:
+                    trend = 'stable'
+                
+                return {
+                    'symbol': symbol,
+                    'sentiment': aggregate_sentiment,
+                    'headlines': headline_sentiments,
+                    'trend': trend,
+                    'timestamp': datetime.now().isoformat()
+                }
+            else:
+                return {
+                    'symbol': symbol,
+                    'sentiment': {
+                        'category': 'neutral',
+                        'polarity': 0.0,
+                        'subjectivity': 0.0,
+                        'confidence': 0.0
+                    },
+                    'headlines': [],
+                    'trend': 'stable',
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+        except Exception as e:
+            self.logger.error(f"Error getting symbol sentiment for {symbol}: {str(e)}")
+            raise
+
+    async def get_portfolio_sentiment_summary(self, symbols: List[str]) -> Dict:
+        """
+        Get sentiment summary for multiple symbols in a portfolio.
+        
+        Args:
+            symbols (List[str]): List of stock symbols
+            
+        Returns:
+            Dict: Portfolio sentiment summary
+        """
+        try:
+            self.logger.info(f"Getting portfolio sentiment summary for {len(symbols)} symbols")
+            
+            symbol_sentiments = {}
+            total_polarity = 0
+            total_subjectivity = 0
+            sentiment_counts = {'positive': 0, 'negative': 0, 'neutral': 0}
+            all_headlines = []
+            
+            for symbol in symbols:
+                try:
+                    sentiment_data = await self.get_symbol_sentiment(symbol)
+                    symbol_sentiments[symbol] = sentiment_data
+                    
+                    sentiment = sentiment_data['sentiment']
+                    total_polarity += sentiment['polarity']
+                    total_subjectivity += sentiment['subjectivity']
+                    sentiment_counts[sentiment['category']] += 1
+                    
+                    # Collect headlines for news summary
+                    if 'headlines' in sentiment_data and sentiment_data['headlines']:
+                        all_headlines.extend(sentiment_data['headlines'][:5])  # Top 5 headlines per symbol
+                    
+                except Exception as e:
+                    self.logger.warning(f"Could not get sentiment for {symbol}: {str(e)}")
+                    symbol_sentiments[symbol] = {
+                        'symbol': symbol,
+                        'sentiment': {'category': 'neutral', 'polarity': 0, 'subjectivity': 0},
+                        'error': str(e)
+                    }
+            
+            # Calculate portfolio-level sentiment
+            if symbol_sentiments:
+                avg_polarity = total_polarity / len(symbol_sentiments)
+                avg_subjectivity = total_subjectivity / len(symbol_sentiments)
+                
+                # Determine overall portfolio sentiment
+                if avg_polarity > 0.1:
+                    overall_category = 'positive'
+                elif avg_polarity < -0.1:
+                    overall_category = 'negative'
+                else:
+                    overall_category = 'neutral'
+                
+                # Generate news summary from top headlines
+                news_summary = await self.generate_news_summary(all_headlines)
+                
+                return {
+                    'overall_sentiment': overall_category,
+                    'sentiment_strength': avg_polarity,
+                    'subjectivity': avg_subjectivity,
+                    'symbol_breakdown': symbol_sentiments,
+                    'sentiment_distribution': sentiment_counts,
+                    'news_summary': news_summary,
+                    'timestamp': datetime.now().isoformat()
+                }
+            else:
+                return {
+                    'overall_sentiment': 'neutral',
+                    'sentiment_strength': 0.0,
+                    'subjectivity': 0.0,
+                    'symbol_breakdown': {},
+                    'sentiment_distribution': {'positive': 0, 'negative': 0, 'neutral': 0},
+                    'news_summary': "No recent news available for portfolio analysis.",
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+        except Exception as e:
+            self.logger.error(f"Error getting portfolio sentiment summary: {str(e)}")
+            raise
+
+    async def generate_news_summary(self, headlines: List[Dict]) -> str:
+        """
+        Generate a concise news summary from the top headlines.
+        
+        Args:
+            headlines (List[Dict]): List of headline dictionaries
+            
+        Returns:
+            str: Concise news summary
+        """
+        try:
+            if not headlines:
+                return "No recent news available for portfolio analysis."
+            
+            # Take top 5 headlines and extract titles
+            top_headlines = headlines[:5]
+            headline_titles = [h.get('headline', '') for h in top_headlines if h.get('headline')]
+            
+            if not headline_titles:
+                return "No recent news available for portfolio analysis."
+            
+            # Create a simple summary based on sentiment and key themes
+            positive_count = sum(1 for h in top_headlines if h.get('sentiment', {}).get('category') == 'positive')
+            negative_count = sum(1 for h in top_headlines if h.get('sentiment', {}).get('category') == 'negative')
+            
+            # Extract common themes (simplified approach)
+            themes = []
+            for title in headline_titles:
+                title_lower = title.lower()
+                if 'earnings' in title_lower or 'quarterly' in title_lower:
+                    themes.append('earnings')
+                elif 'ai' in title_lower or 'artificial intelligence' in title_lower:
+                    themes.append('AI')
+                elif 'dividend' in title_lower:
+                    themes.append('dividends')
+                elif 'layoff' in title_lower or 'job' in title_lower:
+                    themes.append('employment')
+                elif 'merger' in title_lower or 'acquisition' in title_lower:
+                    themes.append('M&A')
+            
+            # Generate summary
+            if positive_count > negative_count:
+                sentiment_tone = "positive"
+            elif negative_count > positive_count:
+                sentiment_tone = "negative"
+            else:
+                sentiment_tone = "mixed"
+            
+            theme_summary = ""
+            if themes:
+                unique_themes = list(set(themes))
+                if len(unique_themes) == 1:
+                    theme_summary = f" focusing on {unique_themes[0]} developments"
+                elif len(unique_themes) > 1:
+                    theme_summary = f" covering {', '.join(unique_themes[:-1])} and {unique_themes[-1]}"
+            
+            # Create a more comprehensive summary
+            if len(headline_titles) >= 2:
+                summary = f"Recent market news shows {sentiment_tone} sentiment{theme_summary}. Top stories include: '{headline_titles[0][:60]}...' and '{headline_titles[1][:60]}...'"
+            else:
+                summary = f"Recent market news shows {sentiment_tone} sentiment{theme_summary}. Key headline: '{headline_titles[0][:80]}...'"
+            
+            return summary
+            
+        except Exception as e:
+            self.logger.error(f"Error generating news summary: {str(e)}")
+            return "Unable to generate news summary at this time."
+
 # Create the ADK tool
 @FunctionTool
 def analyze_sentiment_tool(text: str) -> Dict:
@@ -208,10 +466,10 @@ def analyze_sentiment_tool(text: str) -> Dict:
     logger.info("Sentiment analysis tool called")
     agent = SentimentAnalysisAgent()
     return agent.analyze_sentiment(text)
-
 # Create the ADK agent
 sentiment_agent = LlmAgent(
     name="sentiment_analysis_agent",
     description="Analyzes sentiment of financial news and social media content using TextBlob.",
     tools=[analyze_sentiment_tool],
 )
+

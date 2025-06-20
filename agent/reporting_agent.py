@@ -69,7 +69,7 @@ class ReportingAgent:
             )
 
             # Generate visualization data
-            visualization_data = self._generate_visualization_data(
+            visualization_data = await self._generate_visualization_data(
                 portfolio, market_data, performance, sentiment
             )
             
@@ -197,18 +197,71 @@ class ReportingAgent:
         """
         try:
             self.logger.debug(f"Formatting sentiment analysis for data: {sentiment_analysis}")
-            sentiment = sentiment_analysis.get('sentiment', sentiment_analysis)
-            self.logger.debug(f"Extracted sentiment data: {sentiment}")
-            formatted = {
-                'overall_sentiment': sentiment.get('category', 'neutral'),
-                'sentiment_strength': abs(sentiment.get('polarity', 0.0)),
-                'subjectivity': sentiment.get('subjectivity', 0.0)
-            }
+            
+            # Handle new portfolio sentiment structure
+            if 'portfolio_sentiment' in sentiment_analysis:
+                portfolio_sentiment = sentiment_analysis['portfolio_sentiment']
+                formatted = {
+                    'overall_sentiment': portfolio_sentiment.get('category', 'neutral'),
+                    'sentiment_strength': abs(portfolio_sentiment.get('polarity', 0.0)),
+                    'subjectivity': portfolio_sentiment.get('subjectivity', 0.0),
+                    'symbol_breakdown': sentiment_analysis.get('symbol_breakdown', {}),
+                    'sentiment_distribution': sentiment_analysis.get('sentiment_distribution', {}),
+                    'trend_analysis': self._analyze_sentiment_trends(sentiment_analysis.get('symbol_breakdown', {}))
+                }
+            else:
+                # Handle new sentiment structure with news_summary
+                formatted = {
+                    'overall_sentiment': sentiment_analysis.get('overall_sentiment', 'neutral'),
+                    'sentiment_strength': abs(sentiment_analysis.get('sentiment_strength', 0.0)),
+                    'subjectivity': sentiment_analysis.get('subjectivity', 0.0),
+                    'symbol_breakdown': sentiment_analysis.get('symbol_breakdown', {}),
+                    'sentiment_distribution': sentiment_analysis.get('sentiment_distribution', {}),
+                    'news_summary': sentiment_analysis.get('news_summary', 'No recent news available for portfolio analysis.'),
+                    'trend_analysis': self._analyze_sentiment_trends(sentiment_analysis.get('symbol_breakdown', {}))
+                }
+            
             self.logger.debug(f"Formatted sentiment analysis: {formatted}")
             return formatted
         except Exception as e:
             self.logger.error(f"Error formatting sentiment analysis: {str(e)}", exc_info=True)
             raise
+
+    def _analyze_sentiment_trends(self, symbol_breakdown: Dict) -> Dict:
+        """
+        Analyze sentiment trends across symbols.
+        
+        Args:
+            symbol_breakdown (Dict): Symbol-specific sentiment data
+            
+        Returns:
+            Dict: Trend analysis results
+        """
+        try:
+            trends = {
+                'improving': [],
+                'declining': [],
+                'stable': []
+            }
+            
+            for symbol, data in symbol_breakdown.items():
+                if 'trend' in data:
+                    trend = data['trend']
+                    if trend in trends:
+                        trends[trend].append(symbol)
+            
+            return {
+                'trends': trends,
+                'summary': {
+                    'improving_count': len(trends['improving']),
+                    'declining_count': len(trends['declining']),
+                    'stable_count': len(trends['stable'])
+                }
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error analyzing sentiment trends: {str(e)}")
+            return {'trends': {}, 'summary': {}}
 
     def _generate_recommendations(
         self,
@@ -261,7 +314,7 @@ class ReportingAgent:
             self.logger.error(f"Error generating recommendations: {str(e)}", exc_info=True)
             raise
 
-    def _generate_visualization_data(self, portfolio: List[Dict], market_data: Dict, performance: Dict, sentiment: Dict) -> Dict:
+    async def _generate_visualization_data(self, portfolio: List[Dict], market_data: Dict, performance: Dict, sentiment: Dict) -> Dict:
         """
         Generate data structures for frontend visualizations.
         
@@ -283,45 +336,163 @@ class ReportingAgent:
                 'title': 'Portfolio Composition'
             }
 
-            # Performance trend line chart
-            performance_data = {
-                'type': 'line',
-                'x': [datetime.now().isoformat()],
-                'y': [performance['return_percentage']],
-                'title': 'Portfolio Performance Trend'
-            }
+            # Enhanced performance trend with historical data
+            from .market_data_agent import MarketDataAgent
+            market_agent = MarketDataAgent()
+            
+            # Get historical data for performance trend
+            performance_trend_data = []
+            for pos in portfolio:
+                try:
+                    historical_data = await market_agent.get_historical_data(pos['symbol'], days=30)
+                    if historical_data.get('timestamps') and historical_data.get('close_prices'):
+                        # Calculate position value over time
+                        for i, (timestamp, price) in enumerate(zip(historical_data['timestamps'], historical_data['close_prices'])):
+                            position_value = pos['quantity'] * price
+                            performance_trend_data.append({
+                                'date': datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d'),
+                                'value': position_value,
+                                'symbol': pos['symbol']
+                            })
+                except Exception as e:
+                    self.logger.warning(f"Could not get historical data for {pos['symbol']}: {str(e)}")
+            
+            # Aggregate daily portfolio values
+            if performance_trend_data:
+                from collections import defaultdict
+                daily_values = defaultdict(float)
+                for data_point in performance_trend_data:
+                    daily_values[data_point['date']] += data_point['value']
+                
+                performance_data = {
+                    'type': 'line',
+                    'x': list(daily_values.keys()),
+                    'y': list(daily_values.values()),
+                    'title': 'Portfolio Performance Trend (30 Days)'
+                }
+            else:
+                # Fallback to single point
+                performance_data = {
+                    'type': 'line',
+                    'x': [datetime.now().strftime('%Y-%m-%d')],
+                    'y': [performance['current_value']],
+                    'title': 'Portfolio Performance Trend'
+                }
 
-            # Sentiment gauge chart
+            # Enhanced sentiment gauge chart
             sentiment_data = {
                 'type': 'gauge',
                 'value': sentiment['sentiment_strength'],
                 'title': 'Market Sentiment',
                 'min': 0,
-                'max': 1
+                'max': 1,
+                'thresholds': {
+                    'low': 0.3,
+                    'medium': 0.6,
+                    'high': 1.0
+                }
             }
 
-            # Risk metrics bar chart
+            # Enhanced risk metrics bar chart with real data
+            risk_metrics = []
+            risk_labels = []
+            
+            # Get volatility data for each position
+            for pos in portfolio:
+                symbol = pos['symbol']
+                try:
+                    vol_data = await market_agent.calculate_volatility(symbol, days=30)
+                    if vol_data.get('annualized_volatility', 0) > 0:
+                        risk_metrics.append(vol_data['annualized_volatility'])
+                        risk_labels.append(f"{symbol} Vol")
+                except Exception as e:
+                    self.logger.warning(f"Could not calculate volatility for {symbol}: {str(e)}")
+            
+            # Add portfolio-level metrics
+            if 'portfolio_volatility' in market_data:
+                risk_metrics.append(market_data['portfolio_volatility'])
+                risk_labels.append('Portfolio Vol')
+            
+            if not risk_metrics:
+                risk_metrics = [0, 0, 0]
+                risk_labels = ['HHI', 'Top 3 Concentration', 'Volatility']
+            
             risk_data = {
                 'type': 'bar',
-                'labels': ['HHI', 'Top 3 Concentration', 'Volatility'],
-                'values': [
-                    market_data.get('hhi', 0),
-                    market_data.get('top_3_concentration', 0),
-                    market_data.get('volatility', 0)
-                ],
+                'labels': risk_labels,
+                'values': risk_metrics,
                 'title': 'Risk Metrics'
             }
+
+            # Add goal-based forecasting data
+            forecasting_data = self._generate_forecasting_data(performance, portfolio)
 
             return {
                 'composition': composition_data,
                 'performance': performance_data,
                 'sentiment': sentiment_data,
-                'risk': risk_data
+                'risk': risk_data,
+                'forecasting': forecasting_data
             }
 
         except Exception as e:
             self.logger.error(f"Error generating visualization data: {str(e)}")
             raise
+
+    def _generate_forecasting_data(self, performance: Dict, portfolio: List[Dict]) -> Dict:
+        """
+        Generate goal-based forecasting data.
+        
+        Args:
+            performance (Dict): Current performance metrics
+            portfolio (List[Dict]): Portfolio positions
+            
+        Returns:
+            Dict: Forecasting data
+        """
+        try:
+            current_value = performance['current_value']
+            total_cost = performance['total_cost']
+            
+            # Simple compound growth projections
+            projections = {
+                'conservative': 0.05,  # 5% annual return
+                'moderate': 0.08,      # 8% annual return
+                'aggressive': 0.12     # 12% annual return
+            }
+            
+            forecast_data = {}
+            for risk_level, annual_return in projections.items():
+                # Project 1, 3, 5, 10 years
+                years = [1, 3, 5, 10]
+                projected_values = []
+                
+                for year in years:
+                    projected_value = current_value * ((1 + annual_return) ** year)
+                    projected_values.append({
+                        'year': year,
+                        'value': projected_value,
+                        'growth': ((projected_value - current_value) / current_value) * 100
+                    })
+                
+                forecast_data[risk_level] = {
+                    'annual_return': annual_return * 100,
+                    'projections': projected_values
+                }
+            
+            return {
+                'type': 'forecast',
+                'current_value': current_value,
+                'scenarios': forecast_data,
+                'title': 'Portfolio Growth Projections'
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error generating forecasting data: {str(e)}")
+            return {
+                'type': 'forecast',
+                'error': str(e)
+            }
 
     def _save_report(self, report: Dict) -> None:
         """
@@ -442,6 +613,7 @@ class ReportingAgent:
         except Exception as e:
             self.logger.error(f"Error generating historical comparison: {str(e)}")
             raise
+
 # Create the ADK tool
 @FunctionTool
 def generate_portfolio_report_tool(

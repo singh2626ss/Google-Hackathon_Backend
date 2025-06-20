@@ -52,11 +52,39 @@ class RiskAssessmentAgent:
                 'timestamp': datetime.now().isoformat()
             }
             
-            # Add volatility metrics if available
-            if all('volatility' in market_data[symbol] for symbol in weights.keys()):
-                risk_metrics['portfolio_volatility'] = self._calculate_portfolio_volatility(
-                    weights, market_data
-                )
+            # Calculate volatility metrics for each position
+            from .market_data_agent import MarketDataAgent
+            market_agent = MarketDataAgent()
+            
+            volatility_data = {}
+            portfolio_volatility = 0
+            
+            for pos in portfolio:
+                symbol = pos['symbol']
+                try:
+                    vol_data = await market_agent.calculate_volatility(symbol, days=30)
+                    volatility_data[symbol] = vol_data
+                    
+                    # Calculate weighted portfolio volatility
+                    if vol_data.get('annualized_volatility', 0) > 0:
+                        portfolio_volatility += weights[symbol] * vol_data['annualized_volatility']
+                        
+                except Exception as e:
+                    self.logger.warning(f"Could not calculate volatility for {symbol}: {str(e)}")
+                    volatility_data[symbol] = {'annualized_volatility': 0, 'error': str(e)}
+            
+            risk_metrics['volatility_data'] = volatility_data
+            risk_metrics['portfolio_volatility'] = portfolio_volatility
+            
+            # Calculate diversification score
+            risk_metrics['diversification_score'] = self._calculate_diversification_score(weights, len(portfolio))
+            
+            # Add risk level based on multiple factors
+            risk_metrics['overall_risk_level'] = self._calculate_overall_risk_level(
+                risk_metrics['concentration_risk']['hhi'],
+                portfolio_volatility,
+                len(portfolio)
+            )
             
             self.logger.info(f"Risk assessment complete: {risk_metrics}")
             return risk_metrics
@@ -133,6 +161,96 @@ class RiskAssessmentAgent:
             return 'moderate'
         else:
             return 'low'
+
+    def _calculate_diversification_score(self, weights: Dict[str, float], num_positions: int) -> float:
+        """
+        Calculate diversification score (0-100, higher is better).
+        
+        Args:
+            weights (Dict[str, float]): Position weights
+            num_positions (int): Number of positions
+            
+        Returns:
+            float: Diversification score
+        """
+        try:
+            # Base score from number of positions
+            position_score = min(num_positions * 10, 50)  # Max 50 points for positions
+            
+            # Weight distribution score
+            if len(weights) > 1:
+                # Calculate how evenly distributed the weights are
+                max_weight = max(weights.values())
+                weight_score = (1 - max_weight) * 50  # Max 50 points for even distribution
+            else:
+                weight_score = 0
+            
+            total_score = position_score + weight_score
+            return min(total_score, 100)
+            
+        except Exception as e:
+            self.logger.error(f"Error calculating diversification score: {str(e)}")
+            return 0
+
+    def _calculate_overall_risk_level(self, hhi: float, portfolio_volatility: float, num_positions: int) -> str:
+        """
+        Calculate overall risk level based on multiple factors.
+        
+        Args:
+            hhi (float): Herfindahl-Hirschman Index
+            portfolio_volatility (float): Portfolio volatility
+            num_positions (int): Number of positions
+            
+        Returns:
+            str: Risk level description
+        """
+        try:
+            risk_score = 0
+            
+            # Concentration risk (0-40 points)
+            if hhi > 0.25:
+                risk_score += 40
+            elif hhi > 0.15:
+                risk_score += 25
+            elif hhi > 0.10:
+                risk_score += 15
+            else:
+                risk_score += 5
+            
+            # Volatility risk (0-30 points)
+            if portfolio_volatility > 0.30:
+                risk_score += 30
+            elif portfolio_volatility > 0.20:
+                risk_score += 20
+            elif portfolio_volatility > 0.15:
+                risk_score += 15
+            else:
+                risk_score += 5
+            
+            # Diversification risk (0-30 points)
+            if num_positions < 3:
+                risk_score += 30
+            elif num_positions < 5:
+                risk_score += 20
+            elif num_positions < 10:
+                risk_score += 10
+            else:
+                risk_score += 5
+            
+            # Determine risk level
+            if risk_score >= 70:
+                return 'very_high'
+            elif risk_score >= 50:
+                return 'high'
+            elif risk_score >= 30:
+                return 'moderate'
+            else:
+                return 'low'
+                
+        except Exception as e:
+            self.logger.error(f"Error calculating overall risk level: {str(e)}")
+            return 'moderate'
+
 # Create the ADK tool
 @FunctionTool
 def assess_portfolio_risk_tool(portfolio: List[Dict], market_data: Dict) -> Dict:

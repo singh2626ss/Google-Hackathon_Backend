@@ -1,70 +1,76 @@
-# Portfolio Management API
+# Portfolio Management System
 
- A FastAPI-based portfolio management system that provides comprehensive analysis of investment portfolios using various agents for market data, sentiment analysis, risk assessment, and personalized recommendations.
+An AI-powered portfolio management system with real-time market analysis, sentiment analysis, and intelligent recommendations using Google ADK.
 
 ## Features
 
-- **Portfolio Analysis**: Analyze investment portfolios with detailed performance metrics
-- **Market Data Integration**: Real-time market data using Finnhub API
-- **Sentiment Analysis**: Market sentiment analysis using TextBlob
-- **Risk Assessment**: Portfolio risk analysis with concentration metrics
-- **Personalized Recommendations**: Customized investment recommendations based on user preferences
+- **Portfolio Analysis**: Comprehensive portfolio performance and risk assessment
+- **Market Data Integration**: Real-time market data using Alpha Vantage API
+- **Sentiment Analysis**: News sentiment analysis for portfolio stocks
+- **AI Insights**: Natural language Q&A about portfolios and markets
+- **Risk Assessment**: Advanced risk metrics and volatility calculations
+- **Goal-based Forecasting**: Investment projections based on goals and time horizon
+- **Interactive Dashboard**: Beautiful web interface with real-time updates
 
-## Setup
+## Quick Start
+
+### Prerequisites
+
+- Python 3.9+
+- Poetry (for dependency management)
+- Google Cloud credentials
+
+### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/singh2626ss/Google-Hackathon_Backend.git
+git clone <repository-url>
 cd Google-Hackathon_Backend
 ```
 
-2. Install dependencies using Poetry:
+2. Install dependencies:
 ```bash
 poetry install
 ```
 
-3. Create a `.env` file with your API keys:
-```
-GOOGLE_CLOUD_API_KEY=your_google_cloud_api_key_here
-FINNHUB_API_KEY=your_finnhub_api_key_here
-FMP_API_KEY=your_financial_modeling_prep_api_key_here
+3. Set up environment variables:
+```bash
+cp .env.example .env
 ```
 
-4. Start the server:
+Edit `.env` with your API keys:
 ```bash
-poetry run python app.py
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
+NEWS_API_KEY=your_news_api_key_here
+GOOGLE_CLOUD_API_KEY=your_google_cloud_api_key_here
 ```
+
+4. Run the application:
+```bash
+poetry run uvicorn app:app --host 0.0.0.0 --port 8000
+```
+
+5. Open your browser and go to `http://localhost:8000`
 
 ## API Endpoints
 
-### POST /analyze-portfolio
-Analyzes a portfolio and generates a comprehensive report.
+- `GET /` - Web dashboard
+- `POST /analyze-portfolio` - Portfolio analysis
+- `POST /ai-insights` - AI-powered insights
+- `POST /export-report` - Export reports
+- `POST /historical-comparison` - Historical data comparison
+- `GET /health` - Health check
 
-Request body:
-```json
-{
-    "portfolio": [
-        {
-            "symbol": "AAPL",
-            "quantity": 10,
-            "purchase_price": 150.0
-        }
-    ],
-    "risk_tolerance": "moderate",
-    "investment_goals": ["growth", "income"],
-    "time_horizon": "5-10 years"
-}
-```
+## Architecture
 
-### GET /health
-Health check endpoint.
+The system uses a multi-agent architecture with Google ADK:
 
-## Testing
-
-Run the test script:
-```bash
-poetry run python test_api.py
-```
+- **Market Data Agent**: Fetches real-time and historical market data from Alpha Vantage
+- **Sentiment Analysis Agent**: Analyzes news sentiment for stocks
+- **Risk Assessment Agent**: Calculates portfolio risk metrics
+- **Reporting Agent**: Generates comprehensive reports
+- **AI Insights Agent**: Provides natural language Q&A
+- **Personalization Agent**: Goal-based forecasting and recommendations
 
 ## Project Structure
 

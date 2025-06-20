@@ -1,0 +1,473 @@
+{
+  "timestamp": "2025-06-19T21:46:02.553708",
+  "portfolio_summary": {
+    "number_of_positions": 2,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 196.58,
+        "position_value": 1965.8000000000002,
+        "return_percentage": 31.053333333333345
+      },
+      {
+        "symbol": "MSFT",
+        "quantity": 5,
+        "purchase_price": 300.0,
+        "current_price": 480.24,
+        "position_value": 2401.2,
+        "return_percentage": 60.08
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 3000.0,
+    "current_value": 4367.0,
+    "total_return": 1367.0,
+    "return_percentage": 45.56666666666666
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 0.5049702755888892,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.10511195286195286,
+    "subjectivity": 0.4143577441077441,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.15714814814814815,
+          "subjectivity": 0.32885185185185184,
+          "confidence": 0.15714814814814815,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Investigating Apple's Standing In Technology Hardware, Storage & Peripherals Industry Compared To Competitors",
+            "sentiment": {
+              "polarity": 0.03,
+              "subjectivity": 0.77,
+              "confidence": 0.03,
+              "timestamp": "2025-06-19T21:46:00.776259",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T15:16:29Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "\u2018It Has No Utility\u2019: Warren Buffett Doesn\u2019t Care How High Gold Goes, He Isn\u2019t a Buyer",
+            "sentiment": {
+              "polarity": 0.16,
+              "subjectivity": 0.54,
+              "confidence": 0.16,
+              "timestamp": "2025-06-19T21:46:00.776727",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:54:52Z",
+            "source": "Barchart.com"
+          },
+          {
+            "headline": "Apple Just Snatched Back the Top Spot in China Smartphone Sales. Should You Buy AAPL Stock Here?",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.25,
+              "confidence": 0.25,
+              "timestamp": "2025-06-19T21:46:00.776921",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:31:28Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Today in Apple history: John Sculley steps down as Apple CEO",
+            "sentiment": {
+              "polarity": 0.11481481481481481,
+              "subjectivity": 0.42962962962962964,
+              "confidence": 0.11481481481481481,
+              "timestamp": "2025-06-19T21:46:00.777241",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:30:22Z",
+            "source": "Cult of Mac"
+          },
+          {
+            "headline": "Apple Just Snatched Back the Top Spot in China Smartphone Sales. Should You Buy AAPL Stock Here?",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.25,
+              "confidence": 0.25,
+              "timestamp": "2025-06-19T21:46:00.777463",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T14:30:02Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "3 Big AI Dividends Cashing In On The Next Big Leap",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.06000000000000001,
+              "confidence": 0.0,
+              "timestamp": "2025-06-19T21:46:00.777939",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T13:58:00Z",
+            "source": "Forbes"
+          },
+          {
+            "headline": "Analysts Cover Apple (NASDAQ:AAPL) After WWDC, Citi Maintains Buy",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-19T21:46:00.778297",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T13:55:25Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Promising Music Stocks To Watch Today \u2013 June 16th",
+            "sentiment": {
+              "polarity": 0.20000000000000004,
+              "subjectivity": 0.3,
+              "confidence": 0.20000000000000004,
+              "timestamp": "2025-06-19T21:46:00.778600",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T08:21:04Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Top Fitness Stocks To Follow Now \u2013 June 16th",
+            "sentiment": {
+              "polarity": 0.5,
+              "subjectivity": 0.2888888888888889,
+              "confidence": 0.5,
+              "timestamp": "2025-06-19T21:46:00.778888",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T08:21:03Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Focus Partners Advisor Solutions LLC Purchases 6,422 Shares of Apple Inc. (NASDAQ:AAPL)",
+            "sentiment": {
+              "polarity": 0.06666666666666667,
+              "subjectivity": 0.4000000000000001,
+              "confidence": 0.06666666666666667,
+              "timestamp": "2025-06-19T21:46:00.779192",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:58Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-19T21:46:00.779215"
+      },
+      "MSFT": {
+        "symbol": "MSFT",
+        "sentiment": {
+          "category": "neutral",
+          "polarity": 0.053075757575757575,
+          "subjectivity": 0.4998636363636364,
+          "confidence": 0.053075757575757575,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Former TCW Fund Manager Launches New Active Equity ETF",
+            "sentiment": {
+              "polarity": 0.047878787878787875,
+              "subjectivity": 0.3018181818181818,
+              "confidence": 0.047878787878787875,
+              "timestamp": "2025-06-19T21:46:01.121685",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T20:15:00Z",
+            "source": "Etf.com"
+          },
+          {
+            "headline": "There\u2019s Still an \u2018Enormous\u2019 Reason to Buy Nvidia Stock in 2025",
+            "sentiment": {
+              "polarity": -0.125,
+              "subjectivity": 0.575,
+              "confidence": 0.125,
+              "timestamp": "2025-06-19T21:46:01.122460",
+              "category": "negative"
+            },
+            "published_at": "2025-06-18T16:58:21Z",
+            "source": "Barchart.com"
+          },
+          {
+            "headline": "3 Big AI Dividends Cashing In On The Next Big Leap",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.06000000000000001,
+              "confidence": 0.0,
+              "timestamp": "2025-06-19T21:46:01.123041",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T13:58:00Z",
+            "source": "Forbes"
+          },
+          {
+            "headline": "Monograph Wealth Advisors LLC Cuts Stock Position in Microsoft Corporation (NASDAQ:MSFT)",
+            "sentiment": {
+              "polarity": 0.06666666666666667,
+              "subjectivity": 0.7333333333333334,
+              "confidence": 0.06666666666666667,
+              "timestamp": "2025-06-19T21:46:01.123664",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:57Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Microsoft Corporation (NASDAQ:MSFT) is Novak & Powell Financial Services Inc.\u2019s 6th Largest Position",
+            "sentiment": {
+              "polarity": 0.08,
+              "subjectivity": 0.36,
+              "confidence": 0.08,
+              "timestamp": "2025-06-19T21:46:01.124290",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:57Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Novem Group Makes New $5.62 Million Investment in Microsoft Corporation (NASDAQ:MSFT)",
+            "sentiment": {
+              "polarity": 0.05454545454545454,
+              "subjectivity": 0.6618181818181819,
+              "confidence": 0.05454545454545454,
+              "timestamp": "2025-06-19T21:46:01.124833",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:56Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Royal Capital Wealth Management LLC Has $8.81 Million Stake in Microsoft Corporation (NASDAQ:MSFT)",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.9,
+              "confidence": 0.2,
+              "timestamp": "2025-06-19T21:46:01.125408",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T07:46:56Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Microsoft Corporation (NASDAQ:MSFT) Stock Holdings Lifted by White Knight Strategic Wealth Advisors LLC",
+            "sentiment": {
+              "polarity": 0.04,
+              "subjectivity": 0.44000000000000006,
+              "confidence": 0.04,
+              "timestamp": "2025-06-19T21:46:01.126260",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:54Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "NCM Capital Management LLC Raises Stock Position in Microsoft Corporation (NASDAQ:MSFT)",
+            "sentiment": {
+              "polarity": 0.13333333333333333,
+              "subjectivity": 0.6,
+              "confidence": 0.13333333333333333,
+              "timestamp": "2025-06-19T21:46:01.127008",
+              "category": "positive"
+            },
+            "published_at": "2025-06-18T07:46:54Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Microsoft Corporation (NASDAQ:MSFT) Shares Bought by Financial Avengers Inc.",
+            "sentiment": {
+              "polarity": 0.03333333333333333,
+              "subjectivity": 0.3666666666666667,
+              "confidence": 0.03333333333333333,
+              "timestamp": "2025-06-19T21:46:01.127756",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-18T07:46:53Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-19T21:46:01.127829"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 1
+    },
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [],
+        "stable": [
+          "AAPL",
+          "MSFT"
+        ]
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 0,
+        "stable_count": 2
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL",
+        "MSFT"
+      ],
+      "values": [
+        1965.8000000000002,
+        2401.2
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-19"
+      ],
+      "y": [
+        4367.0
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.10511195286195286,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 4367.0,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4585.35,
+              "growth": 5.000000000000009
+            },
+            {
+              "year": 3,
+              "value": 5055.3483750000005,
+              "growth": 15.76250000000001
+            },
+            {
+              "year": 5,
+              "value": 5573.521583437501,
+              "growth": 27.62815625000003
+            },
+            {
+              "year": 10,
+              "value": 7113.382835137089,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4716.360000000001,
+              "growth": 8.000000000000012
+            },
+            {
+              "year": 3,
+              "value": 5501.162304,
+              "growth": 25.97120000000001
+            },
+            {
+              "year": 5,
+              "value": 6416.555711385602,
+              "growth": 46.932807680000046
+            },
+            {
+              "year": 10,
+              "value": 9428.025463090265,
+              "growth": 115.8924997272788
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4891.040000000001,
+              "growth": 12.00000000000002
+            },
+            {
+              "year": 3,
+              "value": 6135.320576000002,
+              "growth": 40.492800000000045
+            },
+            {
+              "year": 5,
+              "value": 7696.146130534403,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 13563.239125839174,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

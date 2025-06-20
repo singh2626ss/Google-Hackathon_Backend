@@ -1,5 +1,5 @@
 """
-Market Data Agent for retrieving and analyzing market data using Finnhub API.
+Market Data Agent for retrieving and analyzing market data using Alpha Vantage API.
 """
 
 import logging
@@ -7,7 +7,7 @@ import os
 from typing import Dict, List, Optional
 import requests
 from datetime import datetime, timedelta
-import pandas as pd
+import numpy as np
 from google.adk.agents import LlmAgent
 from google.adk.tools import FunctionTool
 from dotenv import load_dotenv
@@ -21,183 +21,264 @@ load_dotenv()
 
 class MarketDataAgent:
     def __init__(self):
-        """Initialize the MarketDataAgent with API configuration."""
+        """Initialize the MarketDataAgent with Alpha Vantage API configuration."""
         self.logger = logging.getLogger(__name__)
-        self.finnhub_api_key = os.getenv('FINNHUB_API_KEY')
         self.alpha_vantage_api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
-        self.base_url_finnhub = 'https://finnhub.io/api/v1'
-        self.base_url_alpha_vantage = 'https://www.alphavantage.co/query'
-        self.logger.info("Initializing MarketDataAgent")
+        self.base_url_alpha = 'https://www.alphavantage.co/query'
+        self.logger.info("Initializing MarketDataAgent with Alpha Vantage")
 
     async def get_stock_quote(self, symbol: str) -> Dict:
         """
-        Get current stock quote for a symbol using Finnhub API with retry logic.
+        Get current stock quote for a symbol using Alpha Vantage API.
         
         Args:
             symbol (str): Stock symbol to get quote for
             
         Returns:
             Dict: Current stock quote data
-        """
-        max_retries = 3
-        retry_count = 0
-        while retry_count < max_retries:
-            try:
-                self.logger.info(f"Getting stock quote for {symbol}")
-                url = f"{self.base_url_finnhub}/quote"
-                params = {
-                    'symbol': symbol,
-                    'token': self.finnhub_api_key
-                }
-                
-                response = requests.get(url, params=params)
-                response.raise_for_status()
-                
-                quote_data = response.json()
-                return {
-                    'symbol': symbol,
-                    'current_price': quote_data.get('c'),
-                    'change': quote_data.get('dp'),
-                    'high': quote_data.get('h'),
-                    'low': quote_data.get('l'),
-                    'open': quote_data.get('o'),
-                    'previous_close': quote_data.get('pc'),
-                    'timestamp': datetime.now().isoformat()
-                }
-                
-            except Exception as e:
-                retry_count += 1
-                self.logger.error(f"Error getting stock quote for {symbol}: {str(e)}")
-                if retry_count == max_retries:
-                    raise
-                self.logger.info(f"Retrying... Attempt {retry_count} of {max_retries}")
-
-    async def get_alpha_vantage_quote(self, symbol: str) -> Dict:
-        """
-        Get current stock quote for a symbol using Alpha Vantage API with retry logic.
-        
-        Args:
-            symbol (str): Stock symbol to get quote for
-            
-        Returns:
-            Dict: Current stock quote data
-        """
-        max_retries = 3
-        retry_count = 0
-        while retry_count < max_retries:
-            try:
-                self.logger.info(f"Getting Alpha Vantage stock quote for {symbol}")
-                url = self.base_url_alpha_vantage
-                params = {
-                    'function': 'GLOBAL_QUOTE',
-                    'symbol': symbol,
-                    'apikey': self.alpha_vantage_api_key
-                }
-                
-                response = requests.get(url, params=params)
-                response.raise_for_status()
-                
-                quote_data = response.json()
-                return {
-                    'symbol': symbol,
-                    'current_price': quote_data.get('05. price'),
-                    'change': quote_data.get('09. change'),
-                    'high': quote_data.get('03. high'),
-                    'low': quote_data.get('04. low'),
-                    'open': quote_data.get('02. open'),
-                    'previous_close': quote_data.get('08. previous close'),
-                    'timestamp': datetime.now().isoformat()
-                }
-                
-            except Exception as e:
-                retry_count += 1
-                self.logger.error(f"Error getting Alpha Vantage stock quote for {symbol}: {str(e)}")
-                if retry_count == max_retries:
-                    raise
-                self.logger.info(f"Retrying... Attempt {retry_count} of {max_retries}")
-
-    async def get_company_profile(self, symbol: str) -> Dict:
-        """
-        Get company profile information.
-        
-        Args:
-            symbol (str): Stock symbol to get profile for
-            
-        Returns:
-            Dict: Company profile data
         """
         try:
-            self.logger.info(f"Getting company profile for {symbol}")
-            url = f"{self.base_url_finnhub}/stock/profile2"
+            self.logger.info(f"Getting stock quote for {symbol} from Alpha Vantage")
             params = {
+                'function': 'GLOBAL_QUOTE',
                 'symbol': symbol,
-                'token': self.finnhub_api_key
+                'apikey': self.alpha_vantage_api_key
             }
-            
-            response = requests.get(url, params=params)
+            response = requests.get(self.base_url_alpha, params=params)
             response.raise_for_status()
+            data = response.json()
             
-            return response.json()
-            
+            if 'Global Quote' in data and data['Global Quote']:
+                quote = data['Global Quote']
+                return {
+                    'symbol': symbol,
+                    'current_price': float(quote.get('05. price', 0)),
+                    'change': float(quote.get('09. change', 0)),
+                    'change_percent': quote.get('10. change percent', '0%'),
+                    'high': float(quote.get('03. high', 0)),
+                    'low': float(quote.get('04. low', 0)),
+                    'open': float(quote.get('02. open', 0)),
+                    'previous_close': float(quote.get('08. previous close', 0)),
+                    'volume': int(quote.get('06. volume', 0)),
+                    'timestamp': datetime.now().isoformat(),
+                    'data_source': 'alpha_vantage'
+                }
+            else:
+                raise Exception(f"No quote data available for {symbol}")
+                
         except Exception as e:
-            self.logger.error(f"Error getting company profile for {symbol}: {str(e)}")
+            self.logger.error(f"Error getting stock quote from Alpha Vantage for {symbol}: {str(e)}")
             raise
 
-    async def get_market_news(self, category: str = 'general') -> List[Dict]:
+    async def get_historical_data(self, symbol: str, days: int = 30) -> Dict:
         """
-        Get market news for a specific category.
+        Get historical price data for a symbol using Alpha Vantage API.
         
         Args:
-            category (str): News category (general, forex, crypto, merger)
+            symbol (str): Stock symbol to get historical data for
+            days (int): Number of days of historical data to fetch
             
         Returns:
-            List[Dict]: List of news articles
+            Dict: Historical price data with timestamps and prices
         """
         try:
-            self.logger.info(f"Getting market news for category: {category}")
-            url = f"{self.base_url_finnhub}/news"
+            self.logger.info(f"Getting historical data for {symbol} for {days} days from Alpha Vantage")
+            
+            # Determine the appropriate function based on days
+            if days <= 5:
+                function = 'TIME_SERIES_INTRADAY'
+                interval = '60min'
+            elif days <= 30:
+                function = 'TIME_SERIES_DAILY'
+                interval = None
+            else:
+                function = 'TIME_SERIES_DAILY'
+                interval = None
+            
             params = {
-                'category': category,
-                'token': self.finnhub_api_key
+                'function': function,
+                'symbol': symbol,
+                'apikey': self.alpha_vantage_api_key
             }
             
-            response = requests.get(url, params=params)
-            response.raise_for_status()
+            if interval:
+                params['interval'] = interval
             
-            return response.json()
+            response = requests.get(self.base_url_alpha, params=params)
+            
+            # Check for API limits
+            if response.status_code == 429:
+                self.logger.warning(f"429 Rate Limited: Alpha Vantage API limit reached for {symbol}")
+                return {
+                    'symbol': symbol,
+                    'timestamps': [],
+                    'close_prices': [],
+                    'days': days,
+                    'error': 'API rate limit reached. Please wait before making more requests.',
+                    'data_source': 'alpha_vantage',
+                    'rate_limited': True
+                }
+            
+            response.raise_for_status()
+            data = response.json()
+            
+            # Check for API errors
+            if 'Error Message' in data:
+                raise Exception(data['Error Message'])
+            if 'Note' in data:
+                self.logger.warning(f"API Note for {symbol}: {data['Note']}")
+                return {
+                    'symbol': symbol,
+                    'timestamps': [],
+                    'close_prices': [],
+                    'days': days,
+                    'error': 'API limit reached. Please wait before making more requests.',
+                    'data_source': 'alpha_vantage',
+                    'rate_limited': True
+                }
+            
+            # Extract time series data
+            time_series_key = None
+            for key in data.keys():
+                if 'Time Series' in key:
+                    time_series_key = key
+                    break
+            
+            if not time_series_key:
+                raise Exception(f"No time series data found for {symbol}")
+            
+            time_series = data[time_series_key]
+            
+            # Convert to sorted list of dates
+            dates = sorted(time_series.keys(), reverse=True)[:days]
+            
+            timestamps = []
+            close_prices = []
+            open_prices = []
+            high_prices = []
+            low_prices = []
+            volumes = []
+            
+            for date in dates:
+                daily_data = time_series[date]
+                timestamps.append(datetime.strptime(date, '%Y-%m-%d').timestamp())
+                close_prices.append(float(daily_data.get('4. close', 0)))
+                open_prices.append(float(daily_data.get('1. open', 0)))
+                high_prices.append(float(daily_data.get('2. high', 0)))
+                low_prices.append(float(daily_data.get('3. low', 0)))
+                volumes.append(int(daily_data.get('5. volume', 0)))
+            
+            historical_data = {
+                'symbol': symbol,
+                'timestamps': timestamps,
+                'open_prices': open_prices,
+                'high_prices': high_prices,
+                'low_prices': low_prices,
+                'close_prices': close_prices,
+                'volumes': volumes,
+                'days': len(dates),
+                'data_source': 'alpha_vantage'
+            }
+            
+            if len(close_prices) > 0:
+                historical_data['statistics'] = {
+                    'current_price': close_prices[0],  # Most recent
+                    'price_change': close_prices[0] - close_prices[-1] if len(close_prices) > 1 else 0,
+                    'price_change_percent': ((close_prices[0] - close_prices[-1]) / close_prices[-1] * 100) if len(close_prices) > 1 and close_prices[-1] > 0 else 0,
+                    'min_price': min(close_prices),
+                    'max_price': max(close_prices),
+                    'avg_price': sum(close_prices) / len(close_prices)
+                }
+            
+            self.logger.info(f"Successfully fetched {len(close_prices)} data points for {symbol} from Alpha Vantage")
+            return historical_data
             
         except Exception as e:
-            self.logger.error(f"Error getting market news: {str(e)}")
-            raise
+            self.logger.error(f"Error getting historical data from Alpha Vantage for {symbol}: {str(e)}")
+            return {
+                'symbol': symbol,
+                'timestamps': [],
+                'close_prices': [],
+                'days': days,
+                'error': str(e),
+                'data_source': 'alpha_vantage'
+            }
 
-    async def get_technical_indicators(self, symbol: str, resolution: str = 'D') -> Dict:
+    async def calculate_volatility(self, symbol: str, days: int = 30) -> Dict:
         """
-        Get technical indicators for a symbol.
+        Calculate volatility metrics for a symbol using historical data from Alpha Vantage.
         
         Args:
             symbol (str): Stock symbol
-            resolution (str): Data resolution (D for daily, W for weekly, M for monthly)
+            days (int): Number of days for volatility calculation
             
         Returns:
-            Dict: Technical indicators data
+            Dict: Volatility metrics including standard deviation and beta
         """
         try:
-            self.logger.info(f"Getting technical indicators for {symbol}")
-            url = f"{self.base_url_finnhub}/indicator"
-            params = {
+            self.logger.info(f"Calculating volatility for {symbol} using Alpha Vantage data")
+            historical_data = await self.get_historical_data(symbol, days)
+            
+            # Check for specific error conditions
+            if 'rate_limited' in historical_data:
+                return {
+                    'symbol': symbol,
+                    'volatility': 0,
+                    'annualized_volatility': 0,
+                    'daily_returns': [],
+                    'error': 'API rate limit reached. Volatility calculation unavailable.',
+                    'data_source': 'alpha_vantage',
+                    'rate_limited': True
+                }
+            elif 'error' in historical_data or len(historical_data['close_prices']) < 2:
+                return {
+                    'symbol': symbol,
+                    'volatility': 0,
+                    'annualized_volatility': 0,
+                    'daily_returns': [],
+                    'error': historical_data.get('error', 'Insufficient data for volatility calculation'),
+                    'data_source': 'alpha_vantage'
+                }
+            
+            prices = historical_data['close_prices']
+            daily_returns = []
+            for i in range(1, len(prices)):
+                if prices[i-1] > 0:
+                    daily_return = (prices[i] - prices[i-1]) / prices[i-1]
+                    daily_returns.append(daily_return)
+            
+            if len(daily_returns) == 0:
+                return {
+                    'symbol': symbol,
+                    'volatility': 0,
+                    'annualized_volatility': 0,
+                    'daily_returns': [],
+                    'error': 'No valid returns calculated',
+                    'data_source': 'alpha_vantage'
+                }
+            
+            volatility = np.std(daily_returns)
+            annualized_volatility = volatility * np.sqrt(252)
+            
+            return {
                 'symbol': symbol,
-                'resolution': resolution,
-                'token': self.finnhub_api_key
+                'volatility': float(volatility),
+                'annualized_volatility': float(annualized_volatility),
+                'daily_returns': daily_returns,
+                'days_analyzed': len(daily_returns),
+                'data_source': 'alpha_vantage'
             }
-            
-            response = requests.get(url, params=params)
-            response.raise_for_status()
-            
-            return response.json()
-            
         except Exception as e:
-            self.logger.error(f"Error getting technical indicators for {symbol}: {str(e)}")
-            raise
+            self.logger.error(f"Error calculating volatility for {symbol}: {str(e)}")
+            return {
+                'symbol': symbol,
+                'volatility': 0,
+                'annualized_volatility': 0,
+                'daily_returns': [],
+                'error': str(e),
+                'data_source': 'alpha_vantage'
+            }
+
 # Create the ADK tool
 @FunctionTool
 def get_market_data_tool(symbol: str) -> Dict:
@@ -209,7 +290,7 @@ def get_market_data_tool(symbol: str) -> Dict:
 # Create the ADK agent
 market_agent = LlmAgent(
     name="market_data_agent",
-    description="Fetches and analyzes market data using Finnhub API.",
+    description="Fetches and analyzes market data using Alpha Vantage API.",
     tools=[get_market_data_tool],
 )
 
