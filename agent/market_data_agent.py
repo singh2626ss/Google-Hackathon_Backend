@@ -21,15 +21,22 @@ load_dotenv()
 
 class MarketDataAgent:
     def __init__(self):
-        """Initialize the MarketDataAgent with Alpha Vantage API configuration."""
+        """Initialize the MarketDataAgent with multiple API configurations."""
         self.logger = logging.getLogger(__name__)
         self.alpha_vantage_api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
+        self.iex_api_key = os.getenv('IEX_API_KEY')  # Free tier: 50,000 calls/month
         self.base_url_alpha = 'https://www.alphavantage.co/query'
-        self.logger.info("Initializing MarketDataAgent with Alpha Vantage")
+        self.base_url_yahoo = 'https://query1.finance.yahoo.com/v8/finance/chart'
+        self.base_url_iex = 'https://cloud.iexapis.com/stable'
+        self.logger.info("Initializing MarketDataAgent with multiple data sources")
+        
+        # Add caching for rate limit optimization
+        self._quote_cache = {}
+        self._cache_duration = timedelta(minutes=5)  # Cache for 5 minutes
 
     async def get_stock_quote(self, symbol: str) -> Dict:
         """
-        Get current stock quote for a symbol using Alpha Vantage API.
+        Get current stock quote for a symbol using multiple APIs with fallback.
         
         Args:
             symbol (str): Stock symbol to get quote for
@@ -37,6 +44,15 @@ class MarketDataAgent:
         Returns:
             Dict: Current stock quote data
         """
+        # Check cache first
+        cache_key = f"quote_{symbol}"
+        if cache_key in self._quote_cache:
+            cached_data, cache_time = self._quote_cache[cache_key]
+            if datetime.now() - cache_time < self._cache_duration:
+                self.logger.info(f"Returning cached quote for {symbol}")
+                return cached_data
+        
+        # Try Alpha Vantage first
         try:
             self.logger.info(f"Getting stock quote for {symbol} from Alpha Vantage")
             params = {
@@ -48,9 +64,13 @@ class MarketDataAgent:
             response.raise_for_status()
             data = response.json()
             
+            # Check for rate limit or API errors
+            if 'Information' in data and 'rate limit' in data['Information'].lower():
+                raise Exception("Alpha Vantage rate limit reached")
+            
             if 'Global Quote' in data and data['Global Quote']:
                 quote = data['Global Quote']
-                return {
+                result = {
                     'symbol': symbol,
                     'current_price': float(quote.get('05. price', 0)),
                     'change': float(quote.get('09. change', 0)),
@@ -63,12 +83,84 @@ class MarketDataAgent:
                     'timestamp': datetime.now().isoformat(),
                     'data_source': 'alpha_vantage'
                 }
-            else:
-                raise Exception(f"No quote data available for {symbol}")
-                
+                # Cache the result
+                self._quote_cache[cache_key] = (result, datetime.now())
+                return result
         except Exception as e:
-            self.logger.error(f"Error getting stock quote from Alpha Vantage for {symbol}: {str(e)}")
-            raise
+            self.logger.warning(f"Alpha Vantage failed for {symbol}: {str(e)}")
+        
+        # Try Yahoo Finance as fallback
+        try:
+            self.logger.info(f"Getting stock quote for {symbol} from Yahoo Finance")
+            params = {
+                'symbols': symbol,
+                'range': '1d',
+                'interval': '1m'
+            }
+            response = requests.get(self.base_url_yahoo, params=params)
+            response.raise_for_status()
+            data = response.json()
+            
+            if 'chart' in data and 'result' in data['chart'] and data['chart']['result']:
+                result_data = data['chart']['result'][0]
+                meta = result_data.get('meta', {})
+                indicators = result_data.get('indicators', {})
+                
+                current_price = meta.get('regularMarketPrice', 0)
+                previous_close = meta.get('previousClose', current_price)
+                change = current_price - previous_close
+                change_percent = f"{(change / previous_close * 100):.2f}%" if previous_close > 0 else "0%"
+                
+                result = {
+                    'symbol': symbol,
+                    'current_price': current_price,
+                    'change': change,
+                    'change_percent': change_percent,
+                    'high': meta.get('regularMarketDayHigh', current_price),
+                    'low': meta.get('regularMarketDayLow', current_price),
+                    'open': meta.get('regularMarketOpen', current_price),
+                    'previous_close': previous_close,
+                    'volume': meta.get('regularMarketVolume', 0),
+                    'timestamp': datetime.now().isoformat(),
+                    'data_source': 'yahoo_finance'
+                }
+                # Cache the result
+                self._quote_cache[cache_key] = (result, datetime.now())
+                return result
+        except Exception as e:
+            self.logger.warning(f"Yahoo Finance failed for {symbol}: {str(e)}")
+        
+        # Try IEX Cloud as final fallback
+        if self.iex_api_key:
+            try:
+                self.logger.info(f"Getting stock quote for {symbol} from IEX Cloud")
+                url = f"{self.base_url_iex}/stock/{symbol}/quote"
+                params = {'token': self.iex_api_key}
+                response = requests.get(url, params=params)
+                response.raise_for_status()
+                data = response.json()
+                
+                result = {
+                    'symbol': symbol,
+                    'current_price': data.get('latestPrice', 0),
+                    'change': data.get('change', 0),
+                    'change_percent': f"{data.get('changePercent', 0):.2f}%",
+                    'high': data.get('high', 0),
+                    'low': data.get('low', 0),
+                    'open': data.get('open', 0),
+                    'previous_close': data.get('previousClose', 0),
+                    'volume': data.get('latestVolume', 0),
+                    'timestamp': datetime.now().isoformat(),
+                    'data_source': 'iex_cloud'
+                }
+                # Cache the result
+                self._quote_cache[cache_key] = (result, datetime.now())
+                return result
+            except Exception as e:
+                self.logger.warning(f"IEX Cloud failed for {symbol}: {str(e)}")
+        
+        # If all APIs fail, raise an exception
+        raise Exception(f"All market data APIs failed for {symbol}. Please check your API keys and try again.")
 
     async def get_historical_data(self, symbol: str, days: int = 30) -> Dict:
         """
@@ -137,7 +229,7 @@ class MarketDataAgent:
                     'rate_limited': True
                 }
             
-            # Extract time series data
+            # Extract time series data - handle different response formats
             time_series_key = None
             for key in data.keys():
                 if 'Time Series' in key:
@@ -145,12 +237,25 @@ class MarketDataAgent:
                     break
             
             if not time_series_key:
-                raise Exception(f"No time series data found for {symbol}")
+                # Try alternative response format
+                if 'Time Series (Daily)' in data:
+                    time_series_key = 'Time Series (Daily)'
+                elif 'Time Series (60min)' in data:
+                    time_series_key = 'Time Series (60min)'
+                else:
+                    self.logger.warning(f"Available keys in response: {list(data.keys())}")
+                    raise Exception(f"No time series data found for {symbol}")
             
             time_series = data[time_series_key]
             
+            if not time_series:
+                raise Exception(f"Empty time series data for {symbol}")
+            
             # Convert to sorted list of dates
             dates = sorted(time_series.keys(), reverse=True)[:days]
+            
+            if not dates:
+                raise Exception(f"No valid dates found in time series for {symbol}")
             
             timestamps = []
             close_prices = []

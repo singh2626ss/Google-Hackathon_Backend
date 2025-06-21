@@ -1,0 +1,339 @@
+{
+  "timestamp": "2025-06-20T16:27:35.144813",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "TSLA",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 100.0,
+        "position_value": 1000.0,
+        "return_percentage": -33.33333333333333
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1500.0,
+    "current_value": 1000.0,
+    "total_return": -500.0,
+    "return_percentage": -33.33333333333333
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.2302142857142857,
+    "subjectivity": 0.29248412698412696,
+    "symbol_breakdown": {
+      "TSLA": {
+        "symbol": "TSLA",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.2302142857142857,
+          "subjectivity": 0.29248412698412696,
+          "confidence": 0.2302142857142857,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Best Energy Stocks To Keep An Eye On \u2013 June 16th",
+            "content": "Tesla, Broadcom, and AltC Acquisition are the three Energy stocks to watch today, according to MarketBeat\u2019s stock screener tool. Energy stocks are shares in companies involved in the exploration, production, refining and distribution of energy resources\u2014rangi\u2026",
+            "sentiment": {
+              "polarity": 1.0,
+              "subjectivity": 0.3,
+              "confidence": 1.0,
+              "timestamp": "2025-06-20T16:27:34.631509",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T16:36:44Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "TRUMP\u2019S TWEETS, TARIFFS AND TRILLIONS MADE: A MARKET MANIPULATION MASTERCLASS?",
+            "content": "Since returning to the office in January 2025, President Donald Trump\u2019s social media posts and tariff decisions have coincided with historic swings in the stock market \u2013 swings worth trillions of dollars. Having already drawn scrutiny from world leaders, lawm\u2026",
+            "sentiment": {
+              "polarity": 0.1111111111111111,
+              "subjectivity": 0.05555555555555556,
+              "confidence": 0.1111111111111111,
+              "timestamp": "2025-06-20T16:27:34.632080",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T12:30:48Z",
+            "source": "Shtfplan.com"
+          },
+          {
+            "headline": "Musk's AI chatbot weighs in on Tesla stock and Robotaxi",
+            "content": "Well, at least he passed the drug test.\nTesla (TSLA) CEO Elon Musk took to X, the social media site he owns, to post the results of a recent drug test, which show he tested negative for ketamine, ecstasy, cocaine, amphetamines and other drugs a few days earli\u2026",
+            "sentiment": {
+              "polarity": -0.1486111111111111,
+              "subjectivity": 0.2652777777777778,
+              "confidence": 0.1486111111111111,
+              "timestamp": "2025-06-20T16:27:34.632428",
+              "category": "negative"
+            },
+            "published_at": "2025-06-19T11:15:29Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Automotive Stocks To Watch Now \u2013 June 16th",
+            "content": "Tesla, NVIDIA, Taiwan Semiconductor Manufacturing, Micron Technology, and Carvana are the five Automotive stocks to watch today, according to MarketBeat\u2019s stock screener tool. Automotive stocks are shares of publicly traded companies whose primary business in\u2026",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.2833333333333333,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T16:27:34.632710",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:53:00Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Best Large Cap Stocks To Watch Now \u2013 June 17th",
+            "content": "Tesla, Invesco QQQ, NVIDIA, Advanced Micro Devices, and Palantir Technologies are the five Large Cap stocks to watch today, according to MarketBeat\u2019s stock screener tool. Large-cap stocks are shares of well-established companies whose market capitalization ty\u2026",
+            "sentiment": {
+              "polarity": 0.45714285714285713,
+              "subjectivity": 0.4392857142857143,
+              "confidence": 0.45714285714285713,
+              "timestamp": "2025-06-20T16:27:34.633066",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:52:52Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Dividend Stocks To Add to Your Watchlist \u2013 June 17th",
+            "content": "ProShares UltraPro Short QQQ, Direxion Daily TSLA Bull 2X Shares, Exxon Mobil, Chevron, Ford Motor, Vale, and PepsiCo are the seven Dividend stocks to watch today, according to MarketBeat\u2019s stock screener tool. Dividend stocks are shares in companies that reg\u2026",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.15,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T16:27:34.633361",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T08:52:51Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Top Insurance Stocks To Keep An Eye On \u2013 June 17th",
+            "content": "Tesla, UnitedHealth Group, and T-Mobile US are the three Insurance stocks to watch today, according to MarketBeat\u2019s stock screener tool. Insurance stocks are shares of publicly traded companies whose primary business is underwriting insurance policies\u2014such as\u2026",
+            "sentiment": {
+              "polarity": 0.3,
+              "subjectivity": 0.35555555555555557,
+              "confidence": 0.3,
+              "timestamp": "2025-06-20T16:27:34.633621",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:52:50Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Top Mid Cap Stocks To Watch Now \u2013 June 17th",
+            "content": "AltC Acquisition, Direxion Daily TSLA Bull 2X Shares, and Oklo are the three Mid Cap stocks to watch today, according to MarketBeat\u2019s stock screener tool. Mid-cap stocks refer to shares of companies whose total market capitalization falls between those of sma\u2026",
+            "sentiment": {
+              "polarity": 0.1,
+              "subjectivity": 0.25,
+              "confidence": 0.1,
+              "timestamp": "2025-06-20T16:27:34.633903",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T08:52:50Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Tesla, Inc. (NASDAQ:TSLA) SVP Xiaotong Zhu Sells 15,000 Shares",
+            "content": "Tesla, Inc. (NASDAQ:TSLA \u2013 Get Free Report) SVP Xiaotong Zhu sold 15,000 shares of the company\u2019s stock in a transaction dated Thursday, June 12th. The stock was sold at an average price of $323.81, for a total value of $4,857,150.00. Following the sale, the s\u2026",
+            "sentiment": {
+              "polarity": 0.0625,
+              "subjectivity": 0.5125,
+              "confidence": 0.0625,
+              "timestamp": "2025-06-20T16:27:34.634222",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T08:11:03Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Best Utility Stocks To Watch Today \u2013 June 17th",
+            "content": "Tesla, Berkshire Hathaway, and Ford Motor are the three Utility stocks to watch today, according to MarketBeat\u2019s stock screener tool. Utility stocks are shares of publicly traded companies that provide essential services such as electricity, natural gas, wate\u2026",
+            "sentiment": {
+              "polarity": 0.22000000000000003,
+              "subjectivity": 0.3133333333333333,
+              "confidence": 0.22000000000000003,
+              "timestamp": "2025-06-20T16:27:34.634488",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T06:38:57Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "improving",
+        "timestamp": "2025-06-20T16:27:34.634513"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 0
+    },
+    "news_summary": "Recent market news shows positive sentiment. Top stories include: 'Best Energy Stocks To Keep An Eye On \u2013 June 16th', 'Best Large Cap Stocks To Watch Now \u2013 June 17th', 'Automotive Stocks To Watch Now \u2013 June 16th'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [
+          "TSLA"
+        ],
+        "declining": [],
+        "stable": []
+      },
+      "summary": {
+        "improving_count": 1,
+        "declining_count": 0,
+        "stable_count": 0
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "TSLA"
+      ],
+      "values": [
+        1000.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-20"
+      ],
+      "y": [
+        1000.0
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.2302142857142857,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 1000.0,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1050.0,
+              "growth": 5.0
+            },
+            {
+              "year": 3,
+              "value": 1157.6250000000002,
+              "growth": 15.762500000000024
+            },
+            {
+              "year": 5,
+              "value": 1276.2815625000003,
+              "growth": 27.62815625000003
+            },
+            {
+              "year": 10,
+              "value": 1628.894626777442,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1080.0,
+              "growth": 8.0
+            },
+            {
+              "year": 3,
+              "value": 1259.7120000000002,
+              "growth": 25.97120000000002
+            },
+            {
+              "year": 5,
+              "value": 1469.3280768000006,
+              "growth": 46.93280768000007
+            },
+            {
+              "year": 10,
+              "value": 2158.924997272788,
+              "growth": 115.8924997272788
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1120.0,
+              "growth": 12.0
+            },
+            {
+              "year": 3,
+              "value": 1404.9280000000003,
+              "growth": 40.49280000000003
+            },
+            {
+              "year": 5,
+              "value": 1762.3416832000007,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 3105.8482083442123,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

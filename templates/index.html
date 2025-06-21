@@ -98,6 +98,12 @@
                 <div id="marketNewsSummary"></div>
             </div>
 
+            <!-- Recent Events -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Recent Events</h2>
+                <div id="recentEvents"></div>
+            </div>
+
             <!-- Recommendations -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold mb-4">Recommendations</h2>
@@ -299,6 +305,80 @@
                 document.getElementById('marketNewsSummary').innerHTML = `
                     <div class="p-4 bg-gray-50 rounded">
                         <p class="text-gray-600">No recent news summary available.</p>
+                    </div>
+                `;
+            }
+
+            // Display Recent Events
+            if (sentiment.recent_events && sentiment.recent_events.portfolio_summary) {
+                const events = sentiment.recent_events;
+                let eventsHTML = `
+                    <div class="p-4 bg-gray-50 rounded">
+                        <p class="font-semibold text-gray-800 mb-3">${events.portfolio_summary}</p>
+                        <div class="text-sm text-gray-600 mb-3">
+                            <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">
+                                Total Events: ${events.total_events}
+                            </span>
+                            <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded">
+                                High Impact: ${events.high_impact_count}
+                            </span>
+                        </div>
+                `;
+                
+                if (events.portfolio_events && events.portfolio_events.length > 0) {
+                    eventsHTML += '<div class="space-y-3">';
+                    events.portfolio_events.forEach(symbolEvents => {
+                        if (symbolEvents.recent_events && symbolEvents.recent_events.length > 0) {
+                            eventsHTML += `
+                                <div class="border-l-4 border-blue-500 pl-3">
+                                    <h4 class="font-semibold text-gray-800">${symbolEvents.symbol}</h4>
+                                    <p class="text-sm text-gray-600 mb-2">${symbolEvents.event_summary}</p>
+                                    <div class="space-y-2">
+                            `;
+                            
+                            symbolEvents.recent_events.slice(0, 3).forEach(event => {
+                                const impactColor = event.impact_level === 'high' ? 'red' : 
+                                                  event.impact_level === 'medium' ? 'yellow' : 'green';
+                                const sentimentColor = event.sentiment.category === 'positive' ? 'green' : 
+                                                     event.sentiment.category === 'negative' ? 'red' : 'gray';
+                                
+                                eventsHTML += `
+                                    <div class="bg-white p-2 rounded border">
+                                        <div class="flex justify-between items-start mb-1">
+                                            <span class="text-xs font-medium text-gray-700">${event.event_type.toUpperCase()}</span>
+                                            <div class="flex space-x-1">
+                                                <span class="inline-block px-1 py-0.5 text-xs rounded ${impactColor === 'red' ? 'bg-red-100 text-red-800' : impactColor === 'yellow' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}">
+                                                    ${event.impact_level}
+                                                </span>
+                                                <span class="inline-block px-1 py-0.5 text-xs rounded ${sentimentColor === 'green' ? 'bg-green-100 text-green-800' : sentimentColor === 'red' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'}">
+                                                    ${event.sentiment.category}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-800 mb-1">${event.headline}</p>
+                                        <div class="flex justify-between text-xs text-gray-500">
+                                            <span>${event.days_old} days ago</span>
+                                            <span>${event.source}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                            
+                            eventsHTML += `
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+                    eventsHTML += '</div>';
+                }
+                
+                eventsHTML += '</div>';
+                document.getElementById('recentEvents').innerHTML = eventsHTML;
+            } else {
+                document.getElementById('recentEvents').innerHTML = `
+                    <div class="p-4 bg-gray-50 rounded">
+                        <p class="text-gray-600">No recent events available.</p>
                     </div>
                 `;
             }

@@ -1,0 +1,393 @@
+{
+  "timestamp": "2025-06-20T16:07:31.924911",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 196.58,
+        "position_value": 1965.8000000000002,
+        "return_percentage": 31.053333333333345
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1500.0,
+    "current_value": 1965.8000000000002,
+    "total_return": 465.8000000000002,
+    "return_percentage": 31.053333333333345
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0.25592512066166384
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.13362265512265512,
+    "subjectivity": 0.4648407287157287,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.13362265512265512,
+          "subjectivity": 0.4648407287157287,
+          "confidence": 0.13362265512265512,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Warren Buffett's \"Secret\" Portfolio Just Bought the World's Leading Share-Buyback Stock, as Well as \"The Monthly Dividend Company\"",
+            "content": "Berkshire Hathaway's Form 13Fs don't tell the full story of what's under the hood.",
+            "sentiment": {
+              "polarity": -0.025000000000000022,
+              "subjectivity": 0.625,
+              "confidence": 0.025000000000000022,
+              "timestamp": "2025-06-20T16:07:31.362498",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:51:00",
+            "source": "fool"
+          },
+          {
+            "headline": "Cypress Asset Management Inc. TX Makes New Investment in Apple Inc. (NASDAQ:AAPL)",
+            "content": "Cypress Asset Management Inc. TX acquired a new position in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) in the fourth quarter, according to its most recent disclosure with the SEC. The firm acquired 114,870 shares of the iPhone maker\u2019s stock, valued at approximately $29,493,000. Apple accounts for about 7.3% of Cypress Asset Management Inc. [...]",
+            "sentiment": {
+              "polarity": 0.05252525252525253,
+              "subjectivity": 0.45101010101010097,
+              "confidence": 0.05252525252525253,
+              "timestamp": "2025-06-20T16:07:31.363172",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:49:09",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Wilkins Miller Wealth Management LLC Invests $2.64 Million in Apple Inc. (NASDAQ:AAPL)",
+            "content": "Wilkins Miller Wealth Management LLC acquired a new stake in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) in the fourth quarter, according to its most recent 13F filing with the Securities and Exchange Commission (SEC). The institutional investor acquired 10,557 shares of the iPhone maker\u2019s stock, valued at approximately $2,644,000. Apple accounts for 2.8% of Wilkins [...]",
+            "sentiment": {
+              "polarity": 0.07662337662337662,
+              "subjectivity": 0.45779220779220786,
+              "confidence": 0.07662337662337662,
+              "timestamp": "2025-06-20T16:07:31.363645",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:49:06",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Griffith & Werner Inc. Acquires Shares of 24,585 Apple Inc. (NASDAQ:AAPL)",
+            "content": "Griffith & Werner Inc. acquired a new stake in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) in the fourth quarter, according to the company in its most recent filing with the Securities and Exchange Commission (SEC). The fund acquired 24,585 shares of the iPhone maker\u2019s stock, valued at approximately $6,157,000. Apple comprises 4.1% of [...]",
+            "sentiment": {
+              "polarity": 0.07662337662337662,
+              "subjectivity": 0.45779220779220786,
+              "confidence": 0.07662337662337662,
+              "timestamp": "2025-06-20T16:07:31.364089",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:49:03",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Apple Inc. (NASDAQ:AAPL) Shares Acquired by United Advisor Group LLC",
+            "content": "United Advisor Group LLC raised its position in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) by 2.0% in the fourth quarter, according to its most recent 13F filing with the Securities and Exchange Commission (SEC). The institutional investor owned 68,985 shares of the iPhone maker\u2019s stock after purchasing an additional 1,372 shares during the [...]",
+            "sentiment": {
+              "polarity": 0.16,
+              "subjectivity": 0.43,
+              "confidence": 0.16,
+              "timestamp": "2025-06-20T16:07:31.364547",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 07:49:00",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Putney Financial Group LLC Takes $27.45 Million Position in Apple Inc. (NASDAQ:AAPL)",
+            "content": "Putney Financial Group LLC bought a new position in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) in the 4th quarter, according to the company in its most recent disclosure with the Securities & Exchange Commission. The firm bought 109,621 shares of the iPhone maker\u2019s stock, valued at approximately $27,451,000. Apple accounts for about 19.1% of Putney [...]",
+            "sentiment": {
+              "polarity": 0.05454545454545455,
+              "subjectivity": 0.37556818181818186,
+              "confidence": 0.05454545454545455,
+              "timestamp": "2025-06-20T16:07:31.364942",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:48:58",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "H&H Retirement Design & Management INC Sells 271 Shares of Apple Inc. (NASDAQ:AAPL)",
+            "content": "H&H Retirement Design & Management INC trimmed its holdings in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) by 11.1% during the fourth quarter, according to its most recent disclosure with the Securities and Exchange Commission. The institutional investor owned 2,180 shares of the iPhone maker\u2019s stock after selling 271 shares during the period. H&H Retirement Design [...]",
+            "sentiment": {
+              "polarity": 0.225,
+              "subjectivity": 0.3875,
+              "confidence": 0.225,
+              "timestamp": "2025-06-20T16:07:31.365343",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 07:48:57",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Great Valley Advisor Group Inc. Sells 7,217 Shares of Apple Inc. (NASDAQ:AAPL)",
+            "content": "Great Valley Advisor Group Inc. lowered its position in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) by 1.6% during the fourth quarter, according to its most recent Form 13F filing with the SEC. The institutional investor owned 442,133 shares of the iPhone maker\u2019s stock after selling 7,217 shares during the period. Apple comprises about [...]",
+            "sentiment": {
+              "polarity": 0.34285714285714286,
+              "subjectivity": 0.5214285714285715,
+              "confidence": 0.34285714285714286,
+              "timestamp": "2025-06-20T16:07:31.365732",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 07:48:57",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Aurdan Capital Management LLC Acquires Shares of 3,420 Apple Inc. (NASDAQ:AAPL)",
+            "content": "Aurdan Capital Management LLC acquired a new stake in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) in the fourth quarter, according to its most recent disclosure with the Securities & Exchange Commission. The institutional investor acquired 3,420 shares of the iPhone maker\u2019s stock, valued at approximately $856,000. A number of other hedge funds also [...]",
+            "sentiment": {
+              "polarity": 0.07305194805194805,
+              "subjectivity": 0.4256493506493507,
+              "confidence": 0.07305194805194805,
+              "timestamp": "2025-06-20T16:07:31.366107",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:48:56",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Instrumental Wealth LLC Purchases 518 Shares of Apple Inc. (NASDAQ:AAPL)",
+            "content": "Instrumental Wealth LLC grew its position in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) by 7.4% in the 4th quarter, according to its most recent filing with the Securities and Exchange Commission. The institutional investor owned 7,525 shares of the iPhone maker\u2019s stock after buying an additional 518 shares during the quarter. Apple accounts for about [...]",
+            "sentiment": {
+              "polarity": 0.3,
+              "subjectivity": 0.5166666666666667,
+              "confidence": 0.3,
+              "timestamp": "2025-06-20T16:07:31.366486",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 07:48:56",
+            "source": "defenseworld"
+          }
+        ],
+        "trend": "declining",
+        "timestamp": "2025-06-20T16:07:31.366512"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 0
+    },
+    "news_summary": "Recent market news shows mixed sentiment. Top stories include: 'Apple Inc. (NASDAQ:AAPL) Shares Acquired by United Advisor Group LLC', 'Wilkins Miller Wealth Management LLC Invests $2.64 Million in Apple Inc. (NASDAQ:AAPL)', 'Griffith & Werner Inc. Acquires Shares of 24,585 Apple Inc. (NASDAQ:AAPL)'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [
+          "AAPL"
+        ],
+        "stable": []
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 1,
+        "stable_count": 0
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL"
+      ],
+      "values": [
+        1965.8000000000002
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-18",
+        "2025-06-17",
+        "2025-06-16",
+        "2025-06-13",
+        "2025-06-12",
+        "2025-06-11",
+        "2025-06-10",
+        "2025-06-09",
+        "2025-06-06",
+        "2025-06-05",
+        "2025-06-04",
+        "2025-06-03",
+        "2025-06-02",
+        "2025-05-30",
+        "2025-05-29",
+        "2025-05-28",
+        "2025-05-27",
+        "2025-05-23",
+        "2025-05-22",
+        "2025-05-21",
+        "2025-05-20",
+        "2025-05-19",
+        "2025-05-16",
+        "2025-05-15",
+        "2025-05-14",
+        "2025-05-13",
+        "2025-05-12",
+        "2025-05-09",
+        "2025-05-08",
+        "2025-05-07"
+      ],
+      "y": [
+        1965.8000000000002,
+        1956.3999999999999,
+        1984.1999999999998,
+        1964.5,
+        1992.0,
+        1987.8,
+        2026.6999999999998,
+        2014.5,
+        2039.1999999999998,
+        2006.3,
+        2028.1999999999998,
+        2032.7,
+        2017.0,
+        2008.5,
+        1999.5,
+        2004.1999999999998,
+        2002.1000000000001,
+        1952.7,
+        2013.6000000000001,
+        2020.9,
+        2068.6000000000004,
+        2087.8,
+        2112.6,
+        2114.5,
+        2123.3,
+        2129.3,
+        2107.9,
+        1985.3,
+        1974.9,
+        1962.5
+      ],
+      "title": "Portfolio Performance Trend (30 Days)"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.13362265512265512,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "AAPL Vol"
+      ],
+      "values": [
+        0.25592512066166384
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 1965.8000000000002,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2064.09,
+              "growth": 4.999999999999997
+            },
+            {
+              "year": 3,
+              "value": 2275.6592250000003,
+              "growth": 15.762500000000006
+            },
+            {
+              "year": 5,
+              "value": 2508.914295562501,
+              "growth": 27.628156250000046
+            },
+            {
+              "year": 10,
+              "value": 3202.0810573190956,
+              "growth": 62.88946267774419
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2123.0640000000003,
+              "growth": 8.000000000000005
+            },
+            {
+              "year": 3,
+              "value": 2476.3418496000004,
+              "growth": 25.971200000000007
+            },
+            {
+              "year": 5,
+              "value": 2888.4051333734415,
+              "growth": 46.93280768000006
+            },
+            {
+              "year": 10,
+              "value": 4244.014759638848,
+              "growth": 115.89249972727885
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2201.6960000000004,
+              "growth": 12.000000000000007
+            },
+            {
+              "year": 3,
+              "value": 2761.807462400001,
+              "growth": 40.49280000000004
+            },
+            {
+              "year": 5,
+              "value": 3464.4112808345617,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 6105.476407963052,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "timestamp": "2025-06-20T15:49:39.162636",
+  "portfolio_summary": {
+    "number_of_positions": 2,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 196.58,
+        "position_value": 1965.8000000000002,
+        "return_percentage": 31.053333333333345
+      },
+      {
+        "symbol": "NVDA",
+        "quantity": 5,
+        "purchase_price": 400.0,
+        "current_price": 145.48,
+        "position_value": 727.4,
+        "return_percentage": -63.629999999999995
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 3500.0,
+    "current_value": 2693.2000000000003,
+    "total_return": -806.7999999999997,
+    "return_percentage": -23.051428571428563
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 0.605719397504999,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0.2736476458274222
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.10614015151515152,
+    "subjectivity": 0.35802967171717176,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.17561363636363636,
+          "subjectivity": 0.5150871212121213,
+          "confidence": 0.17561363636363636,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "In-Depth Analysis: Apple Versus Competitors In Technology Hardware, Storage & Peripherals Industry",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.7,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.517095",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T15:09:05Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Apple May Sell Folding iPhone to Jump-Start Troubled Sales",
+            "sentiment": {
+              "polarity": -0.14750000000000002,
+              "subjectivity": 0.68,
+              "confidence": 0.14750000000000002,
+              "timestamp": "2025-06-20T15:49:37.517655",
+              "category": "negative"
+            },
+            "published_at": "2025-06-19T14:13:03Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Warren Buffett Famously Warned to \u201cMake Money While You Sleep\u201d or \u201cYou Will Work Until You Die\u201d: 5 Stocks To Invest Like Buffett",
+            "sentiment": {
+              "polarity": 0.375,
+              "subjectivity": 0.625,
+              "confidence": 0.375,
+              "timestamp": "2025-06-20T15:49:37.517977",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T13:38:00Z",
+            "source": "Barchart.com"
+          },
+          {
+            "headline": "Music Stocks To Keep An Eye On \u2013 June 17th",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.2833333333333333,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T15:49:37.518254",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:52:53Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Apple\u3001\u958b\u767a\u8005\u5411\u3051\u306bMac\u3084Xcode\u306a\u3057\u3067Safari\u6a5f\u80fd\u62e1\u5f35\u3092\u30d1\u30c3\u30b1\u30fc\u30b8\u5316\uff06App Store\u3067\u914d\u5e03\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u300cSafari Web Extension Packager\u300d\u306e\u63d0\u4f9b\u3092\u958b\u59cb\u3002",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.3333333333333333,
+              "confidence": 0.25,
+              "timestamp": "2025-06-20T15:49:37.518502",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:25:54Z",
+            "source": "Applech2.com"
+          },
+          {
+            "headline": "Apple Inc. (NASDAQ:AAPL) Position Lessened by Westfuller Advisors LLC",
+            "sentiment": {
+              "polarity": 0.4,
+              "subjectivity": 0.8,
+              "confidence": 0.4,
+              "timestamp": "2025-06-20T15:49:37.518899",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "35,987 Shares in Apple Inc. (NASDAQ:AAPL) Acquired by Kingstone Capital Partners Texas LLC",
+            "sentiment": {
+              "polarity": 0.03409090909090909,
+              "subjectivity": 0.4636363636363636,
+              "confidence": 0.03409090909090909,
+              "timestamp": "2025-06-20T15:49:37.519196",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Blue Sky Capital Consultants Group Inc. Takes $8.30 Million Position in Apple Inc. (NASDAQ:AAPL)",
+            "sentiment": {
+              "polarity": 0.10454545454545455,
+              "subjectivity": 0.3255681818181818,
+              "confidence": 0.10454545454545455,
+              "timestamp": "2025-06-20T15:49:37.519538",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Technology Stocks To Watch Today \u2013 June 17th",
+            "sentiment": {
+              "polarity": 0.4,
+              "subjectivity": 0.55,
+              "confidence": 0.4,
+              "timestamp": "2025-06-20T15:49:37.519793",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:10:51Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Formidable Asset Management LLC Has $54.15 Million Stake in Apple Inc. (NASDAQ:AAPL)",
+            "sentiment": {
+              "polarity": 0.13999999999999999,
+              "subjectivity": 0.39,
+              "confidence": 0.13999999999999999,
+              "timestamp": "2025-06-20T15:49:37.520130",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:02:59Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-20T15:49:37.520155"
+      },
+      "NVDA": {
+        "symbol": "NVDA",
+        "sentiment": {
+          "category": "neutral",
+          "polarity": 0.03666666666666667,
+          "subjectivity": 0.20097222222222225,
+          "confidence": 0.03666666666666667,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "NVDA: Oppenheimer Sees Trillion-Dollar AI Opportunity for Nvidia",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.973653",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T17:06:33Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "15 AI stocks to watch outside of the Magnificent 7",
+            "sentiment": {
+              "polarity": 0.1,
+              "subjectivity": 0.5958333333333333,
+              "confidence": 0.1,
+              "timestamp": "2025-06-20T15:49:37.974327",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T17:00:37Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Nvidia\u2019s Bringing Sovereign AI to Germany. Should You Buy NVDA Stock Here?",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.974752",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T13:06:04Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Nvidia\u2019s Bringing Sovereign AI to Germany. Should You Buy NVDA Stock Here?",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.975097",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T13:00:02Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Nvidia (NVDA) Joins Bill Gates TerraPower in $650M Nuclear Energy Push",
+            "sentiment": {
+              "polarity": -0.2,
+              "subjectivity": 0.4,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T15:49:37.975438",
+              "category": "negative"
+            },
+            "published_at": "2025-06-19T12:21:44Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "NVDA: Barclays Sees $200 Nvidia Surge Ahead as Chip Demand Soars",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.975845",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T10:54:28Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Nvidia\u2019s AI empire: A look at its top startup investments",
+            "sentiment": {
+              "polarity": 0.16666666666666666,
+              "subjectivity": 0.5222222222222223,
+              "confidence": 0.16666666666666666,
+              "timestamp": "2025-06-20T15:49:37.976808",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T10:12:00Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Streaming Stocks To Watch Today \u2013 June 17th",
+            "sentiment": {
+              "polarity": 0.1,
+              "subjectivity": 0.14166666666666666,
+              "confidence": 0.1,
+              "timestamp": "2025-06-20T15:49:37.977600",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T09:36:52Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Robotics Stocks To Consider \u2013 June 17th",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.06666666666666667,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T15:49:37.978164",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T09:36:52Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Automotive Stocks To Watch Now \u2013 June 16th",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.2833333333333333,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T15:49:37.978665",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:53:00Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "declining",
+        "timestamp": "2025-06-20T15:49:37.978752"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 1
+    },
+    "news_summary": "Recent market news shows mixed sentiment. Top stories include: 'Warren Buffett Famously Warned to \u201cMake Money While You Sleep\u201d or \u201cYou Will Work Until You Die\u201d: 5 Stocks To Invest Like Buffett', 'Apple\u3001\u958b\u767a\u8005\u5411\u3051\u306bMac\u3084Xcode\u306a\u3057\u3067Safari\u6a5f\u80fd\u62e1\u5f35\u3092\u30d1\u30c3\u30b1\u30fc\u30b8\u5316\uff06App Store\u3067\u914d\u5e03\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u300cSafari Web Extension Packager\u300d\u306e\u63d0\u4f9b\u3092\u958b\u59cb\u3002', 'Music Stocks To Keep An Eye On \u2013 June 17th'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [
+          "NVDA"
+        ],
+        "stable": [
+          "AAPL"
+        ]
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 1,
+        "stable_count": 1
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL",
+        "NVDA"
+      ],
+      "values": [
+        1965.8000000000002,
+        727.4
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-18",
+        "2025-06-17",
+        "2025-06-16",
+        "2025-06-13",
+        "2025-06-12",
+        "2025-06-11",
+        "2025-06-10",
+        "2025-06-09",
+        "2025-06-06",
+        "2025-06-05",
+        "2025-06-04",
+        "2025-06-03",
+        "2025-06-02",
+        "2025-05-30",
+        "2025-05-29",
+        "2025-05-28",
+        "2025-05-27",
+        "2025-05-23",
+        "2025-05-22",
+        "2025-05-21",
+        "2025-05-20",
+        "2025-05-19",
+        "2025-05-16",
+        "2025-05-15",
+        "2025-05-14",
+        "2025-05-13",
+        "2025-05-12",
+        "2025-05-09",
+        "2025-05-08",
+        "2025-05-07"
+      ],
+      "y": [
+        2693.2000000000003,
+        2677.0,
+        2707.6499999999996,
+        2674.35,
+        2717.0,
+        2701.95,
+        2746.5,
+        2727.65,
+        2747.7999999999997,
+        2706.25,
+        2737.7999999999997,
+        2738.8,
+        2703.9,
+        2684.15,
+        2695.45,
+        2678.25,
+        2679.6000000000004,
+        2609.15,
+        2677.75,
+        2679.9,
+        2740.5000000000005,
+        2765.65,
+        2789.6,
+        2788.65,
+        2800.0,
+        2778.9500000000003,
+        2722.9,
+        2568.55,
+        2561.75,
+        2547.8
+      ],
+      "title": "Portfolio Performance Trend (30 Days)"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.10614015151515152,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "AAPL Vol",
+        "NVDA Vol"
+      ],
+      "values": [
+        0.25592512066166384,
+        0.3215428066341967
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 2693.2000000000003,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2827.8600000000006,
+              "growth": 5.000000000000011
+            },
+            {
+              "year": 3,
+              "value": 3117.7156500000006,
+              "growth": 15.76250000000001
+            },
+            {
+              "year": 5,
+              "value": 3437.2815041250014,
+              "growth": 27.628156250000043
+            },
+            {
+              "year": 10,
+              "value": 4386.939008837007,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2908.6560000000004,
+              "growth": 8.000000000000004
+            },
+            {
+              "year": 3,
+              "value": 3392.656358400001,
+              "growth": 25.97120000000002
+            },
+            {
+              "year": 5,
+              "value": 3957.194376437762,
+              "growth": 46.93280768000006
+            },
+            {
+              "year": 10,
+              "value": 5814.416802655073,
+              "growth": 115.8924997272788
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 3016.3840000000005,
+              "growth": 12.000000000000007
+            },
+            {
+              "year": 3,
+              "value": 3783.7520896000015,
+              "growth": 40.49280000000004
+            },
+            {
+              "year": 5,
+              "value": 4746.3386211942425,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 8364.670394712633,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

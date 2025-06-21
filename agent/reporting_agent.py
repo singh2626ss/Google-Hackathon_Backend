@@ -210,7 +210,7 @@ class ReportingAgent:
                     'trend_analysis': self._analyze_sentiment_trends(sentiment_analysis.get('symbol_breakdown', {}))
                 }
             else:
-                # Handle new sentiment structure with news_summary
+                # Handle new sentiment structure with news_summary and recent_events
                 formatted = {
                     'overall_sentiment': sentiment_analysis.get('overall_sentiment', 'neutral'),
                     'sentiment_strength': abs(sentiment_analysis.get('sentiment_strength', 0.0)),
@@ -218,7 +218,8 @@ class ReportingAgent:
                     'symbol_breakdown': sentiment_analysis.get('symbol_breakdown', {}),
                     'sentiment_distribution': sentiment_analysis.get('sentiment_distribution', {}),
                     'news_summary': sentiment_analysis.get('news_summary', 'No recent news available for portfolio analysis.'),
-                    'trend_analysis': self._analyze_sentiment_trends(sentiment_analysis.get('symbol_breakdown', {}))
+                    'trend_analysis': self._analyze_sentiment_trends(sentiment_analysis.get('symbol_breakdown', {})),
+                    'recent_events': sentiment_analysis.get('recent_events', {})
                 }
             
             self.logger.debug(f"Formatted sentiment analysis: {formatted}")

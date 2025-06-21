@@ -1,0 +1,550 @@
+{
+  "timestamp": "2025-06-20T23:25:57.111008",
+  "portfolio_summary": {
+    "number_of_positions": 2,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 201.0,
+        "position_value": 2010.0,
+        "return_percentage": 34.0
+      },
+      {
+        "symbol": "MSFT",
+        "quantity": 5,
+        "purchase_price": 300.0,
+        "current_price": 477.4,
+        "position_value": 2387.0,
+        "return_percentage": 59.133333333333326
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 3000.0,
+    "current_value": 4397.0,
+    "total_return": 1397.0,
+    "return_percentage": 46.56666666666667
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 0.5036756975896223,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0.19035623756508474
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.11076893939393939,
+    "subjectivity": 0.5357545995670996,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.14661363636363636,
+          "subjectivity": 0.5544204545454545,
+          "confidence": 0.14661363636363636,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "stepchain added to PyPI",
+            "content": "The thinnest possible layer for reliable AI workflows - 185 lines, zero complexity",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 1.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T23:25:54.140483",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20T00:15:23Z",
+            "source": "Pypi.org"
+          },
+          {
+            "headline": "Parallels\u3001macOS 26 Tahoe\u306eBeta\u7248\u3092\u642d\u8f09\u3057\u305fMac\u3084macOS 26\u4eee\u60f3\u30de\u30b7\u30f3\u3067\u767a\u751f\u3057\u3066\u3044\u308b\u4e0d\u5177\u5408\u30ea\u30b9\u30c8\u3092\u516c\u958b\u3002",
+            "content": "Parallels\u304cmacOS 26 Tahoe\u306eBeta\u7248\u3092\u642d\u8f09\u3057\u305fMac\u3084macOS 26\u4eee\u60f3\u30de\u30b7\u30f3\u3067\u767a\u751f\u3057\u3066\u3044\u308b\u4e0d\u5177\u5408\u30ea\u30b9\u30c8\u3092\u516c\u958b\u3057\u3066\u3044\u307e\u3059\u3002\u8a73\u7d30\u306f\u4ee5\u4e0b\u304b\u3089\u3002 \u3000Alludo(\u65e7Corel)\u5098\u4e0b\u306eParallel [\u2026]\nThe post Parallels\u3001macOS 26 Tahoe\u306eBeta\u7248\u3092\u642d\u8f09\u3057\u305fMac\u3084macOS 26\u4eee\u60f3\u30de\u30b7\u30f3\u3067\u767a\u751f\u3057\u3066\u3044\u308b\u4e0d\u5177\u5408\u30ea\u30b9\u30c8\u3092\u516c\u958b\u3002 first appeared on AAPL Ch..",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.3333333333333333,
+              "confidence": 0.25,
+              "timestamp": "2025-06-20T23:25:54.141187",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T21:27:24Z",
+            "source": "Applech2.com"
+          },
+          {
+            "headline": "In-Depth Analysis: Apple Versus Competitors In Technology Hardware, Storage & Peripherals Industry",
+            "content": "In today's rapidly changing and fiercely competitive business landscape, it is vital for investors and industry enthusiasts to carefully evaluate companies. In this article, we will perform a comprehensive industry comparison, evaluating Apple AAPL against it\u2026",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.7,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T23:25:54.141478",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T15:09:05Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Apple May Sell Folding iPhone to Jump-Start Troubled Sales",
+            "content": "Apple Inc. (NASDAQ: AAPL) may launch an expensive folding iPhone. Major competitor Samsung already has its folding phone product Z Fold6. It sells for as much as $1,900.\n \n \n \n24/7 Wall St. Key Points:\n \n \n \n \nApple Inc. (NASDAQ: AAPL) reportedly may launch a\u2026",
+            "sentiment": {
+              "polarity": -0.14750000000000002,
+              "subjectivity": 0.68,
+              "confidence": 0.14750000000000002,
+              "timestamp": "2025-06-20T23:25:54.141783",
+              "category": "negative"
+            },
+            "published_at": "2025-06-19T14:13:03Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Warren Buffett Famously Warned to \u201cMake Money While You Sleep\u201d or \u201cYou Will Work Until You Die\u201d: 5 Stocks To Invest Like Buffett",
+            "content": "Warren Buffett advocates investing in high-quality dividend stocks, emphasizing passive income and long-term wealth by reinvesting consistent dividends.",
+            "sentiment": {
+              "polarity": 0.375,
+              "subjectivity": 0.625,
+              "confidence": 0.375,
+              "timestamp": "2025-06-20T23:25:54.142022",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T13:38:00Z",
+            "source": "Barchart.com"
+          },
+          {
+            "headline": "Music Stocks To Keep An Eye On \u2013 June 17th",
+            "content": "Apple, Amazon.com, Alibaba Group, Walt Disney, and Spotify Technology are the five Music stocks to watch today, according to MarketBeat\u2019s stock screener tool. Music stocks are shares of publicly traded companies whose primary business involves music creation,\u2026",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.2833333333333333,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T23:25:54.142313",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:52:53Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Apple\u3001\u958b\u767a\u8005\u5411\u3051\u306bMac\u3084Xcode\u306a\u3057\u3067Safari\u6a5f\u80fd\u62e1\u5f35\u3092\u30d1\u30c3\u30b1\u30fc\u30b8\u5316\uff06App Store\u3067\u914d\u5e03\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u300cSafari Web Extension Packager\u300d\u306e\u63d0\u4f9b\u3092\u958b\u59cb\u3002",
+            "content": "Apple\u304c\u958b\u767a\u8005\u5411\u3051\u306bMac\u3084Xcode\u306a\u3057\u3067Safari\u6a5f\u80fd\u62e1\u5f35\u3092\u30d1\u30c3\u30b1\u30fc\u30b8\u5316\uff06App Store\u3067\u914d\u5e03\u3067\u304d\u308b\u300cSafari Web Extension Packager\u300d\u306e\u63d0\u4f9b\u3092\u958b\u59cb\u3057\u3066\u3044\u307e\u3059\u3002\u8a73\u7d30\u306f\u4ee5\u4e0b\u304b\u3089\u3002 [\u2026]\nThe post Apple\u3001\u958b\u767a\u8005\u5411\u3051\u306bMac\u3084Xcode\u306a\u3057\u3067Safari\u6a5f\u80fd\u62e1\u5f35\u3092\u30d1\u30c3\u30b1\u30fc\u30b8\u5316\uff06App Store\u3067\u914d\u5e03\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u300cSafari Web Extension Packager\u300d\u306e\u63d0\u4f9b\u3092\u958b\u59cb\u3002 first appeared on AAPL Ch..",
+            "sentiment": {
+              "polarity": 0.25,
+              "subjectivity": 0.3333333333333333,
+              "confidence": 0.25,
+              "timestamp": "2025-06-20T23:25:54.142606",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T08:25:54Z",
+            "source": "Applech2.com"
+          },
+          {
+            "headline": "Apple Inc. (NASDAQ:AAPL) Position Lessened by Westfuller Advisors LLC",
+            "content": "Westfuller Advisors LLC reduced its position in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) by 0.3% in the 4th quarter, Holdings Channel reports. The institutional investor owned 19,231 shares of the iPhone maker\u2019s stock after selling 60 shares during the period. \u2026",
+            "sentiment": {
+              "polarity": 0.4,
+              "subjectivity": 0.8,
+              "confidence": 0.4,
+              "timestamp": "2025-06-20T23:25:54.142932",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "35,987 Shares in Apple Inc. (NASDAQ:AAPL) Acquired by Kingstone Capital Partners Texas LLC",
+            "content": "Kingstone Capital Partners Texas LLC bought a new stake in Apple Inc. (NASDAQ:AAPL \u2013 Free Report) during the fourth quarter, Holdings Channel reports. The institutional investor bought 35,987 shares of the iPhone maker\u2019s stock, valued at approximately $9,012,\u2026",
+            "sentiment": {
+              "polarity": 0.03409090909090909,
+              "subjectivity": 0.4636363636363636,
+              "confidence": 0.03409090909090909,
+              "timestamp": "2025-06-20T23:25:54.143222",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Blue Sky Capital Consultants Group Inc. Takes $8.30 Million Position in Apple Inc. (NASDAQ:AAPL)",
+            "content": "Blue Sky Capital Consultants Group Inc. purchased a new stake in shares of Apple Inc. (NASDAQ:AAPL \u2013 Free Report) during the fourth quarter, according to its most recent Form 13F filing with the Securities & Exchange Commission. The firm purchased 33,131 shar\u2026",
+            "sentiment": {
+              "polarity": 0.10454545454545455,
+              "subjectivity": 0.3255681818181818,
+              "confidence": 0.10454545454545455,
+              "timestamp": "2025-06-20T23:25:54.143525",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:34:55Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "declining",
+        "timestamp": "2025-06-20T23:25:54.143548"
+      },
+      "MSFT": {
+        "symbol": "MSFT",
+        "sentiment": {
+          "category": "neutral",
+          "polarity": 0.07492424242424242,
+          "subjectivity": 0.5170887445887445,
+          "confidence": 0.07492424242424242,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "stepchain added to PyPI",
+            "content": "The thinnest possible layer for reliable AI workflows - 185 lines, zero complexity",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 1.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T23:25:54.813613",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20T00:15:23Z",
+            "source": "Pypi.org"
+          },
+          {
+            "headline": "Evaluating Microsoft Against Peers In Software Industry",
+            "content": "In the dynamic and fiercely competitive business environment, conducting a thorough analysis of companies is crucial for investors and industry enthusiasts. In this article, we will perform an extensive industry comparison, evaluating Microsoft MSFT in relati\u2026",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.5,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T23:25:54.814327",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T15:09:01Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Microsoft (NASDAQ: MSFT) Stock Price Prediction for 2025: Where Will It Be in 1 Year",
+            "content": "Shares of Microsoft (NASDAQ:MSFT) 1.08% over the past trading sessions, increasing the tech giant\u2019s one-month gain to 4.66%. So far in 2025, the stock is up 14.73%, including 35.45% since its year-to-date low on April 8. On June 12, it was reported that Micro\u2026",
+            "sentiment": {
+              "polarity": -0.0375,
+              "subjectivity": 0.6375,
+              "confidence": 0.0375,
+              "timestamp": "2025-06-20T23:25:54.815145",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T14:13:19Z",
+            "source": "Biztoc.com"
+          },
+          {
+            "headline": "Microsoft (MSFT) Reportedly Plans Thousands of Job Cuts in Sales Teams",
+            "content": "Microsoft Prepares Major Sales Layoffs Amid Strategy Shift",
+            "sentiment": {
+              "polarity": 0.0625,
+              "subjectivity": 0.5,
+              "confidence": 0.0625,
+              "timestamp": "2025-06-20T23:25:54.815526",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T12:23:29Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Microsoft's Next Xbox Will Run on AMD; Won't Be Tied to One Store",
+            "content": "The console will run on Windows; users can access multiple game stores, not just Microsoft's.",
+            "sentiment": {
+              "polarity": -0.13333333333333333,
+              "subjectivity": 0.13333333333333333,
+              "confidence": 0.13333333333333333,
+              "timestamp": "2025-06-20T23:25:54.815985",
+              "category": "negative"
+            },
+            "published_at": "2025-06-19T11:13:41Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Microsoft to Axe Thousands of Sales Roles at Fiscal-Year End",
+            "content": "Thousands of roles targeted as Microsoft reshapes small-business go-to-market",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T23:25:54.816271",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T11:12:13Z",
+            "source": "Yahoo Entertainment"
+          },
+          {
+            "headline": "Technology Stocks To Watch Today \u2013 June 17th",
+            "content": "NVIDIA, Advanced Micro Devices, Apple, Meta Platforms, Circle Internet Group, Microsoft, and Broadcom are the seven Technology stocks to watch today, according to MarketBeat\u2019s stock screener tool. Technology stocks are shares of companies whose primary busine\u2026",
+            "sentiment": {
+              "polarity": 0.4,
+              "subjectivity": 0.55,
+              "confidence": 0.4,
+              "timestamp": "2025-06-20T23:25:54.816886",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:10:51Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Warm Springs Advisors Inc. Acquires Shares of 13,877 Microsoft Corporation (NASDAQ:MSFT)",
+            "content": "Warm Springs Advisors Inc. purchased a new position in shares of Microsoft Corporation (NASDAQ:MSFT \u2013 Free Report) in the fourth quarter, HoldingsChannel.com reports. The fund purchased 13,877 shares of the software giant\u2019s stock, valued at approximately $5,8\u2026",
+            "sentiment": {
+              "polarity": 0.19090909090909092,
+              "subjectivity": 0.5792207792207792,
+              "confidence": 0.19090909090909092,
+              "timestamp": "2025-06-20T23:25:54.818388",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:02:58Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "Jupiter Wealth Management LLC Acquires 400 Shares of Microsoft Corporation (NASDAQ:MSFT)",
+            "content": "Jupiter Wealth Management LLC increased its holdings in shares of Microsoft Corporation (NASDAQ:MSFT \u2013 Free Report) by 1.1% during the 4th quarter, according to the company in its most recent 13F filing with the SEC. The institutional investor owned 35,618 sh\u2026",
+            "sentiment": {
+              "polarity": 0.2,
+              "subjectivity": 0.5375,
+              "confidence": 0.2,
+              "timestamp": "2025-06-20T23:25:54.819247",
+              "category": "positive"
+            },
+            "published_at": "2025-06-19T07:02:57Z",
+            "source": "ETF Daily News"
+          },
+          {
+            "headline": "University of Texas Texas AM Investment Management Co. Sells 6,492 Shares of Microsoft Corporation (NASDAQ:MSFT)",
+            "content": "University of Texas Texas AM Investment Management Co. lessened its position in shares of Microsoft Corporation (NASDAQ:MSFT \u2013 Free Report) by 10.9% during the 4th quarter, Holdings Channel.com reports. The firm owned 53,184 shares of the software giant\u2019s sto\u2026",
+            "sentiment": {
+              "polarity": 0.06666666666666667,
+              "subjectivity": 0.7333333333333334,
+              "confidence": 0.06666666666666667,
+              "timestamp": "2025-06-20T23:25:54.819930",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-19T07:02:57Z",
+            "source": "ETF Daily News"
+          }
+        ],
+        "trend": "declining",
+        "timestamp": "2025-06-20T23:25:54.819986"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 1
+    },
+    "news_summary": "Recent market news shows mixed sentiment. Top stories include: 'Warren Buffett Famously Warned to \u201cMake Money While You Sleep\u201d or \u201cYou Will Work Until You Die\u201d: 5 Stocks To Invest Like Buffett', 'Parallels\u3001macOS 26 Tahoe\u306eBeta\u7248\u3092\u642d\u8f09\u3057\u305fMac\u3084macOS 26\u4eee\u60f3\u30de\u30b7\u30f3\u3067\u767a\u751f\u3057\u3066\u3044\u308b\u4e0d\u5177\u5408\u30ea\u30b9\u30c8\u3092\u516c\u958b\u3002', 'Apple May Sell Folding iPhone to Jump-Start Troubled Sales'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stable": []
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 2,
+        "stable_count": 0
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL",
+        "MSFT"
+      ],
+      "values": [
+        2010.0,
+        2387.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-20",
+        "2025-06-18",
+        "2025-06-17",
+        "2025-06-16",
+        "2025-06-13",
+        "2025-06-12",
+        "2025-06-11",
+        "2025-06-10",
+        "2025-06-09",
+        "2025-06-06",
+        "2025-06-05",
+        "2025-06-04",
+        "2025-06-03",
+        "2025-06-02",
+        "2025-05-30",
+        "2025-05-29",
+        "2025-05-28",
+        "2025-05-27",
+        "2025-05-23",
+        "2025-05-22",
+        "2025-05-21",
+        "2025-05-20",
+        "2025-05-19",
+        "2025-05-16",
+        "2025-05-15",
+        "2025-05-14",
+        "2025-05-13",
+        "2025-05-12",
+        "2025-05-09",
+        "2025-05-08"
+      ],
+      "y": [
+        4397.0,
+        4367.0,
+        4346.6,
+        4379.9,
+        4339.299999999999,
+        4386.35,
+        4350.9,
+        4381.299999999999,
+        4378.25,
+        4391.1,
+        4344.7,
+        4347.549999999999,
+        4347.55,
+        4326.85,
+        4310.3,
+        4292.9,
+        4291.0,
+        4305.55,
+        4203.6,
+        4287.900000000001,
+        4283.75,
+        4359.450000000001,
+        4382.15,
+        4383.95,
+        4380.15,
+        4388.0,
+        4375.0,
+        4354.200000000001,
+        4178.95,
+        4165.75
+      ],
+      "title": "Portfolio Performance Trend (30 Days)"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.11076893939393939,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "AAPL Vol",
+        "MSFT Vol"
+      ],
+      "values": [
+        0.26325521548464076,
+        0.1289708393169458
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 4397.0,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4616.85,
+              "growth": 5.000000000000009
+            },
+            {
+              "year": 3,
+              "value": 5090.077125000001,
+              "growth": 15.762500000000015
+            },
+            {
+              "year": 5,
+              "value": 5611.810030312501,
+              "growth": 27.628156250000025
+            },
+            {
+              "year": 10,
+              "value": 7162.249673940412,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4748.76,
+              "growth": 8.000000000000004
+            },
+            {
+              "year": 3,
+              "value": 5538.953664000001,
+              "growth": 25.97120000000001
+            },
+            {
+              "year": 5,
+              "value": 6460.635553689603,
+              "growth": 46.93280768000006
+            },
+            {
+              "year": 10,
+              "value": 9492.79321300845,
+              "growth": 115.89249972727882
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 4924.64,
+              "growth": 12.000000000000007
+            },
+            {
+              "year": 3,
+              "value": 6177.4684160000015,
+              "growth": 40.49280000000003
+            },
+            {
+              "year": 5,
+              "value": 7749.016381030403,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 13656.414572089501,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

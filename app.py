@@ -149,6 +149,57 @@ async def health_check():
     """
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
+@app.get("/market-data/{symbol}")
+async def get_market_data(symbol: str):
+    """
+    Get market data for a specific symbol.
+    """
+    try:
+        logger.info(f"Getting market data for {symbol}")
+        quote = await market_data_agent.get_stock_quote(symbol)
+        return quote
+    except Exception as e:
+        logger.error(f"Error getting market data for {symbol}: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/sentiment-analysis")
+async def get_sentiment_analysis():
+    """
+    Get general market sentiment analysis.
+    """
+    try:
+        logger.info("Getting general sentiment analysis")
+        sentiment = await sentiment_agent.get_market_sentiment()
+        return sentiment
+    except Exception as e:
+        logger.error(f"Error getting sentiment analysis: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/risk-assessment")
+async def get_risk_assessment(request: PortfolioRequest):
+    """
+    Get risk assessment for a portfolio.
+    """
+    try:
+        logger.info(f"Getting risk assessment for portfolio")
+        
+        # Get market data for portfolio
+        portfolio = request.portfolio
+        market_data = {}
+        
+        for position in portfolio:
+            symbol = position['symbol']
+            quote = await market_data_agent.get_stock_quote(symbol)
+            market_data[symbol] = quote
+        
+        # Calculate risk metrics
+        risk_metrics = await risk_agent.calculate_portfolio_risk(portfolio, market_data)
+        return risk_metrics
+        
+    except Exception as e:
+        logger.error(f"Error getting risk assessment: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/export-report")
 async def export_report(request: ExportRequest):
     """

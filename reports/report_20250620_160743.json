@@ -1,0 +1,339 @@
+{
+  "timestamp": "2025-06-20T16:07:43.241367",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "TSLA",
+        "quantity": 5,
+        "purchase_price": 200.0,
+        "current_price": 322.05,
+        "position_value": 1610.25,
+        "return_percentage": 61.025000000000006
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1000.0,
+    "current_value": 1610.25,
+    "total_return": 610.25,
+    "return_percentage": 61.025
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0.6994603710776395
+  },
+  "market_sentiment": {
+    "overall_sentiment": "neutral",
+    "sentiment_strength": 0.0887366452991453,
+    "subjectivity": 0.28509615384615383,
+    "symbol_breakdown": {
+      "TSLA": {
+        "symbol": "TSLA",
+        "sentiment": {
+          "category": "neutral",
+          "polarity": 0.0887366452991453,
+          "subjectivity": 0.28509615384615383,
+          "confidence": 0.0887366452991453,
+          "article_count": 10
+        },
+        "headlines": [
+          {
+            "headline": "Tesla Robotaxi invites are going out to consumers, we\u2019ve got the details",
+            "content": "Tesla is finally launching its long-anticipated Robotaxi service and it looks like we\u2019re getting it in June as promised. This afternoon a number of email invites went out inviting the first consumers to Early Access of Tesla Robotaxi. So far the initial rollout of \u201cEarly Access\u201d emails look to have gone to some familiar names [...]The post Tesla Robotaxi invites are going out to consumers, we\u2019ve got the details appeared first on techAU.",
+            "sentiment": {
+              "polarity": 0.14687499999999998,
+              "subjectivity": 0.4708333333333333,
+              "confidence": 0.14687499999999998,
+              "timestamp": "2025-06-20T16:07:42.756936",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 07:45:08",
+            "source": "techau"
+          },
+          {
+            "headline": "Is Tesla a Millionaire-Maker Stock?",
+            "content": null,
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.0,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T16:07:42.757372",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:14:00",
+            "source": "fool"
+          },
+          {
+            "headline": "Before The Mars Dream And Multi-Billion Dollar Ventures, Elon Musk Just Wanted A Job At Netscape\u2014Here's What He Told The AI Generation About That",
+            "content": "Speaking to young founders at Y Combinator's AI Startup School in San Francisco earlier this week, Tesla Inc. (NASDAQ:TSLA) Elon Musk shared raw, humorous and insightful reflections on his early startup journey\u2014and why rejection shaped his mission to build the future.What Happened: In a fireside chat with Y Combinator CEO Garry Tan, Musk revisited his 1995 decision to drop out of Stanford University's PhD program and take a gamble on the internet\u2014then a largely unknown frontier.Musk admitted he initially didn't intend to start a company\u2014he just wanted a job at Netscape, the leading browser company at the time.\u201cI sent my resume into Netscape and [Marc Andreessen] knows about this but I don\u2019t think he ever saw my resume and then nobody responded,\u201d he said, adding, \u201cSo, I\u2019m like man, this is ridiculous, so I\u2019ll just write software myself and see how it goes.\u201d See Also: Ex-OpenAI Chief Scientist Ilya Sutskever's AI Startup Valued At $30 Billion In Latest Funding Round: ReportThat \"see what happens\" mindset led to Zip2, Musk's first ...Full story available on Benzinga.com",
+            "sentiment": {
+              "polarity": 0.08215811965811967,
+              "subjectivity": 0.5245726495726496,
+              "confidence": 0.08215811965811967,
+              "timestamp": "2025-06-20T16:07:42.759079",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 07:10:00",
+            "source": "benzinga"
+          },
+          {
+            "headline": "Utility Stocks Worth Watching \u2013 June 18th",
+            "content": "Tesla, Berkshire Hathaway, Eaton, Ford Motor, Riot Platforms, Nucor, and Southern are the seven Utility stocks to watch today, according to MarketBeat\u2019s stock screener tool. Utility stocks are shares of companies that provide essential public services\u2014such as electricity, natural gas and water\u2014often operating within regulated frameworks. Because demand for these services remains relatively stable regardless [...]",
+            "sentiment": {
+              "polarity": 0.06666666666666667,
+              "subjectivity": 0.14444444444444446,
+              "confidence": 0.06666666666666667,
+              "timestamp": "2025-06-20T16:07:42.759905",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:36:59",
+            "source": "americanbankingnews"
+          },
+          {
+            "headline": "Utility Stocks Worth Watching \u2013 June 18th",
+            "content": "Tesla, Berkshire Hathaway, Eaton, Ford Motor, Riot Platforms, Nucor, and Southern are the seven Utility stocks to watch today, according to MarketBeat\u2019s stock screener tool. Utility stocks are shares of companies that provide essential public services\u2014such as electricity, natural gas and water\u2014often operating within regulated frameworks. Because demand for these services remains relatively stable regardless [...]",
+            "sentiment": {
+              "polarity": 0.06666666666666667,
+              "subjectivity": 0.14444444444444446,
+              "confidence": 0.06666666666666667,
+              "timestamp": "2025-06-20T16:07:42.768435",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:36:52",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Solar Stocks To Keep An Eye On \u2013 June 18th",
+            "content": "Tesla, Berkshire Hathaway, First Solar, GE Vernova, and Vistra are the five Solar stocks to watch today, according to MarketBeat\u2019s stock screener tool. Solar stocks are shares of publicly traded companies involved in the solar energy industry, including manufacturers of photovoltaic panels, developers of solar farms, and providers of related services and equipment. Investors buy [...]",
+            "sentiment": {
+              "polarity": 0.08333333333333333,
+              "subjectivity": 0.26666666666666666,
+              "confidence": 0.08333333333333333,
+              "timestamp": "2025-06-20T16:07:42.769889",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:03:11",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Promising Retail Stocks To Add to Your Watchlist \u2013 June 18th",
+            "content": "Tesla, Amazon.com, and Apple are the three Retail stocks to watch today, according to MarketBeat\u2019s stock screener tool. Retail stocks are shares of publicly traded companies whose core business is selling goods and services directly to consumers, such as department stores, supermarkets, e-commerce platforms, and specialty shops. Their performance is closely tied to consumer spending [...]",
+            "sentiment": {
+              "polarity": 0.07500000000000001,
+              "subjectivity": 0.3666666666666667,
+              "confidence": 0.07500000000000001,
+              "timestamp": "2025-06-20T16:07:42.771171",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:03:08",
+            "source": "defenseworld"
+          },
+          {
+            "headline": "Promising Industrial Stocks To Watch Today \u2013 June 18th",
+            "content": "Tesla, Broadcom, and Micron Technology are the three Industrial stocks to watch today, according to MarketBeat\u2019s stock screener tool. Industrial stocks are shares of companies involved in producing and distributing capital goods, machinery, construction materials, and transportation equipment. Because these firms\u2014spanning sectors such as aerospace, defense, engineering, and infrastructure services\u2014rely heavily on business investment and [...]",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.5,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T16:07:42.771925",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:03:04",
+            "source": "americanbankingnews"
+          },
+          {
+            "headline": "Best Energy Stocks To Watch Today \u2013 June 18th",
+            "content": "Tesla, Broadcom, and AltC Acquisition are the three Energy stocks to watch today, according to MarketBeat\u2019s stock screener tool. Energy stocks are shares of companies involved in the production, distribution and servicing of energy, including oil, natural gas and renewable sources such as wind or solar power. They encompass everything from upstream exploration and drilling [...]",
+            "sentiment": {
+              "polarity": 0.3666666666666667,
+              "subjectivity": 0.39999999999999997,
+              "confidence": 0.3666666666666667,
+              "timestamp": "2025-06-20T16:07:42.772602",
+              "category": "positive"
+            },
+            "published_at": "2025-06-20 06:03:04",
+            "source": "americanbankingnews"
+          },
+          {
+            "headline": "Automotive Stocks To Watch Today \u2013 June 18th",
+            "content": "Tesla, NVIDIA, and Micron Technology are the three Automotive stocks to watch today, according to MarketBeat\u2019s stock screener tool. Automotive stocks are shares of publicly traded companies involved in the design, manufacture, distribution and servicing of motor vehicles and their components. By owning these equities, investors gain exposure to the financial performance of automakers, parts [...]",
+            "sentiment": {
+              "polarity": 0.0,
+              "subjectivity": 0.03333333333333333,
+              "confidence": 0.0,
+              "timestamp": "2025-06-20T16:07:42.773244",
+              "category": "neutral"
+            },
+            "published_at": "2025-06-20 06:03:03",
+            "source": "defenseworld"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-20T16:07:42.773306"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 0,
+      "negative": 0,
+      "neutral": 1
+    },
+    "news_summary": "Recent market news shows mixed sentiment. Top stories include: 'Tesla Robotaxi invites are going out to consumers, we\u2019ve got the details', 'Before The Mars Dream And Multi-Billion Dollar Ventures, Elon Musk Just Wanted A Job At Netscape\u2014Here's What He Told The AI Generation About That', 'Utility Stocks Worth Watching \u2013 June 18th'",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [],
+        "stable": [
+          "TSLA"
+        ]
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 0,
+        "stable_count": 1
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "TSLA"
+      ],
+      "values": [
+        1610.25
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-20"
+      ],
+      "y": [
+        1610.25
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.0887366452991453,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 1610.25,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1690.7625,
+              "growth": 5.000000000000003
+            },
+            {
+              "year": 3,
+              "value": 1864.0656562500003,
+              "growth": 15.762500000000019
+            },
+            {
+              "year": 5,
+              "value": 2055.132386015626,
+              "growth": 27.628156250000053
+            },
+            {
+              "year": 10,
+              "value": 2622.927572768376,
+              "growth": 62.88946267774421
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1739.0700000000002,
+              "growth": 8.00000000000001
+            },
+            {
+              "year": 3,
+              "value": 2028.4512480000003,
+              "growth": 25.971200000000017
+            },
+            {
+              "year": 5,
+              "value": 2365.985535667201,
+              "growth": 46.93280768000007
+            },
+            {
+              "year": 10,
+              "value": 3476.4089768585072,
+              "growth": 115.89249972727882
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 1803.4800000000002,
+              "growth": 12.000000000000014
+            },
+            {
+              "year": 3,
+              "value": 2262.2853120000004,
+              "growth": 40.49280000000003
+            },
+            {
+              "year": 5,
+              "value": 2837.810695372801,
+              "growth": 76.23416832000007
+            },
+            {
+              "year": 10,
+              "value": 5001.192077486267,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}

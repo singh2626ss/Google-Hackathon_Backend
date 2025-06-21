@@ -1,0 +1,295 @@
+{
+  "timestamp": "2025-06-20T23:40:46.764349",
+  "portfolio_summary": {
+    "number_of_positions": 1,
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "purchase_price": 150.0,
+        "current_price": 201.0,
+        "position_value": 2010.0,
+        "return_percentage": 34.0
+      }
+    ]
+  },
+  "performance_analysis": {
+    "total_cost": 1500.0,
+    "current_value": 2010.0,
+    "total_return": 510.0,
+    "return_percentage": 34.0
+  },
+  "risk_analysis": {
+    "risk_level": "high",
+    "concentration_metrics": {
+      "hhi": 1.0,
+      "top_3_concentration": 1.0
+    },
+    "portfolio_volatility": 0
+  },
+  "market_sentiment": {
+    "overall_sentiment": "positive",
+    "sentiment_strength": 0.2,
+    "subjectivity": 0.5,
+    "symbol_breakdown": {
+      "AAPL": {
+        "symbol": "AAPL",
+        "sentiment": {
+          "category": "positive",
+          "polarity": 0.2,
+          "subjectivity": 0.5
+        },
+        "headlines": [
+          {
+            "headline": "Apple Announces New iPhone Launch",
+            "content": "Apple Inc. announces the launch of its latest iPhone model with advanced features.",
+            "sentiment": {
+              "category": "positive",
+              "polarity": 0.3,
+              "subjectivity": 0.5
+            },
+            "published_at": "2025-06-18T23:40:45.612784Z",
+            "source": "Tech News"
+          },
+          {
+            "headline": "Microsoft Acquires Gaming Studio",
+            "content": "Microsoft Corporation acquires a major gaming studio for $10 billion.",
+            "sentiment": {
+              "category": "positive",
+              "polarity": 0.4,
+              "subjectivity": 0.6
+            },
+            "published_at": "2025-06-19T23:40:45.612790Z",
+            "source": "Business News"
+          },
+          {
+            "headline": "Apple CEO Resigns Amid Controversy",
+            "content": "Apple CEO Tim Cook resigns from his position following recent controversies.",
+            "sentiment": {
+              "category": "negative",
+              "polarity": -0.2,
+              "subjectivity": 0.7
+            },
+            "published_at": "2025-06-20T23:40:45.612791Z",
+            "source": "Financial Times"
+          }
+        ],
+        "trend": "stable",
+        "timestamp": "2025-06-20T23:40:46.019662"
+      }
+    },
+    "sentiment_distribution": {
+      "positive": 1,
+      "negative": 0,
+      "neutral": 0
+    },
+    "news_summary": "Recent news shows positive sentiment.",
+    "trend_analysis": {
+      "trends": {
+        "improving": [],
+        "declining": [],
+        "stable": [
+          "AAPL"
+        ]
+      },
+      "summary": {
+        "improving_count": 0,
+        "declining_count": 0,
+        "stable_count": 1
+      }
+    },
+    "recent_events": {
+      "portfolio_events": [
+        {
+          "symbol": "AAPL",
+          "recent_events": [
+            {
+              "headline": "Microsoft Acquires Gaming Studio",
+              "event_type": "acquires",
+              "days_old": 1,
+              "sentiment": {
+                "category": "positive",
+                "polarity": 0.4,
+                "subjectivity": 0.6
+              },
+              "source": "Business News",
+              "published_at": "2025-06-19T23:40:45.612790Z",
+              "impact_level": "high"
+            },
+            {
+              "headline": "Apple CEO Resigns Amid Controversy",
+              "event_type": "ceo",
+              "days_old": 0,
+              "sentiment": {
+                "category": "negative",
+                "polarity": -0.2,
+                "subjectivity": 0.7
+              },
+              "source": "Financial Times",
+              "published_at": "2025-06-20T23:40:45.612791Z",
+              "impact_level": "high"
+            },
+            {
+              "headline": "Apple Announces New iPhone Launch",
+              "event_type": "announces",
+              "days_old": 2,
+              "sentiment": {
+                "category": "positive",
+                "polarity": 0.3,
+                "subjectivity": 0.5
+              },
+              "source": "Tech News",
+              "published_at": "2025-06-18T23:40:45.612784Z",
+              "impact_level": "medium"
+            }
+          ],
+          "event_summary": "AAPL has 2 high-impact developments, 1 notable announcement in the past 10 days, including announces, acquires. These developments could influence short-term sentiment and stock performance.",
+          "total_events": 3,
+          "high_impact_events": 2,
+          "timestamp": "2025-06-20T23:40:45.612836"
+        }
+      ],
+      "portfolio_summary": "Portfolio has recent developments that may impact performance.",
+      "total_events": 3,
+      "high_impact_count": 2
+    }
+  },
+  "recommendations": [
+    {
+      "type": "risk_management",
+      "priority": "high",
+      "action": "Consider diversifying portfolio to reduce concentration risk",
+      "details": "Current portfolio shows high concentration in certain positions"
+    }
+  ],
+  "visualization_data": {
+    "composition": {
+      "type": "pie",
+      "labels": [
+        "AAPL"
+      ],
+      "values": [
+        2010.0
+      ],
+      "title": "Portfolio Composition"
+    },
+    "performance": {
+      "type": "line",
+      "x": [
+        "2025-06-20"
+      ],
+      "y": [
+        2010.0
+      ],
+      "title": "Portfolio Performance Trend"
+    },
+    "sentiment": {
+      "type": "gauge",
+      "value": 0.2,
+      "title": "Market Sentiment",
+      "min": 0,
+      "max": 1,
+      "thresholds": {
+        "low": 0.3,
+        "medium": 0.6,
+        "high": 1.0
+      }
+    },
+    "risk": {
+      "type": "bar",
+      "labels": [
+        "HHI",
+        "Top 3 Concentration",
+        "Volatility"
+      ],
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "title": "Risk Metrics"
+    },
+    "forecasting": {
+      "type": "forecast",
+      "current_value": 2010.0,
+      "scenarios": {
+        "conservative": {
+          "annual_return": 5.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2110.5,
+              "growth": 5.0
+            },
+            {
+              "year": 3,
+              "value": 2326.82625,
+              "growth": 15.762500000000005
+            },
+            {
+              "year": 5,
+              "value": 2565.325940625001,
+              "growth": 27.628156250000043
+            },
+            {
+              "year": 10,
+              "value": 3274.0781998226585,
+              "growth": 62.8894626777442
+            }
+          ]
+        },
+        "moderate": {
+          "annual_return": 8.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2170.8,
+              "growth": 8.000000000000009
+            },
+            {
+              "year": 3,
+              "value": 2532.0211200000003,
+              "growth": 25.971200000000017
+            },
+            {
+              "year": 5,
+              "value": 2953.3494343680013,
+              "growth": 46.93280768000007
+            },
+            {
+              "year": 10,
+              "value": 4339.439244518304,
+              "growth": 115.8924997272788
+            }
+          ]
+        },
+        "aggressive": {
+          "annual_return": 12.0,
+          "projections": [
+            {
+              "year": 1,
+              "value": 2251.2000000000003,
+              "growth": 12.000000000000014
+            },
+            {
+              "year": 3,
+              "value": 2823.905280000001,
+              "growth": 40.492800000000045
+            },
+            {
+              "year": 5,
+              "value": 3542.3067832320016,
+              "growth": 76.23416832000008
+            },
+            {
+              "year": 10,
+              "value": 6242.7548987718665,
+              "growth": 210.5848208344212
+            }
+          ]
+        }
+      },
+      "title": "Portfolio Growth Projections"
+    }
+  }
+}
