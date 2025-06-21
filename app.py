@@ -3,6 +3,7 @@ Main FastAPI application for the portfolio management system.
 """
 
 import logging
+import os
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Response, Request
@@ -293,7 +294,13 @@ portfolio_agent = Agent(
 # Register the agent with FastAPI
 # app.include_router(portfolio_agent.router)
 
+#if __name__ == "__main__":
+    #import uvicorn
+    #logger.info("Starting Portfolio Manager API server")
+    #uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+
+import uvicorn
+
 if __name__ == "__main__":
-    import uvicorn
-    logger.info("Starting Portfolio Manager API server")
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True) 
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port) 
