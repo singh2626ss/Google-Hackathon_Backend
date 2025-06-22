@@ -1,26 +1,77 @@
-# 🤖 AI-Powered Portfolio Management System
+# QuantumFin AI Backend
 
-A sophisticated **multi-agent AI workflow** system that provides real-time portfolio analysis, market sentiment, risk assessment, and intelligent insights using 6 specialized AI agents.
+This repository contains the server-side components of **QuantumFin AI**, developed as part of the Agent Development Kit Hackathon with Google Cloud. The backend implements a multi-agent architecture that powers real-time portfolio analysis, market sentiment scoring, risk assessment, and report generation.
 
-## 🚀 Features
+## Table of Contents
 
-### **6 Interactive Dashboard Cards**
-- 📊 **Portfolio Performance** - Real-time value tracking and performance metrics
-- 📈 **Market Sentiment** - AI-powered sentiment analysis with recent events
-- ⚠️ **Risk Metrics** - Advanced risk assessment and volatility analysis
-- 📰 **Market News Summary** - Latest market news and insights
-- 🎯 **Recent Events** - Company-specific impactful events extraction
-- 🤖 **AI Q&A** - Interactive portfolio queries and insights
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Architecture](#architecture)
+4. [Technology Stack](#technology-stack)
+5. [Installation](#installation)
 
-### **Multi-Agent AI Architecture**
-- **Market Data Agent** - Real-time stock prices and historical data
-- **Sentiment Analysis Agent** - News sentiment analysis with recent events
-- **Risk Assessment Agent** - Portfolio risk metrics and volatility
-- **Portfolio Analysis Agent** - Performance calculations and returns
-- **Reporting Agent** - Comprehensive report generation
-- **AI Insights Agent** - Intelligent portfolio recommendations
+   * [Prerequisites](#prerequisites)
+   * [Setup](#setup)
+   * [Environment Variables](#environment-variables)
+6. [Running the Application](#running-the-application)
 
-## 🏗️ Architecture
+   * [Start the Server](#start-the-server)
+   * [Access the UI](#access-the-ui)
+7. [API Endpoints](#api-endpoints)
+
+   * [Main Endpoints](#main-endpoints)
+   * [Agent Endpoints](#agent-endpoints)
+8. [Multi-Agent Workflow](#multi-agent-workflow)
+
+   * [Communication Flow](#communication-flow)
+   * [Data Flow Example](#data-flow-example)
+9. [Data Richness](#data-richness)
+
+   * [Available Data](#available-data)
+   * [Visualization Capabilities](#visualization-capabilities)
+10. [Configuration](#configuration)
+
+    * [API Rate Limits](#api-rate-limits)
+    * [Fallback Mechanisms](#fallback-mechanisms)
+11. [Testing](#testing)
+12. [Project Structure](#project-structure)
+13. [Key Achievements](#key-achievements)
+14. [Contributing](#contributing)
+15. [License](#license)
+16. [Deployment](#deployment)
+
+    * [Local Development](#local-development)
+    * [Production Deployment](#production-deployment)
+
+---
+
+## Overview
+
+The backend is built with FastAPI and Python 3.9+. It orchestrates six specialized agents using Google’s Agent Development Kit (ADK), each responsible for a core aspect of the portfolio analysis pipeline:
+
+* Fetching live and historical market data
+* Analyzing news sentiment
+* Computing risk metrics
+* Calculating portfolio performance
+* Generating structured reports
+* Producing AI-driven recommendations
+
+All functionality is exposed via RESTful endpoints and designed for real-time responsiveness.
+
+---
+
+## Features
+
+* Real-time market data ingestion and caching
+* Natural language sentiment analysis of financial news
+* Quantitative risk metrics including VaR, drawdown, and concentration
+* Portfolio performance calculations and historical returns
+* Exportable PDF and JSON report generation
+* AI-powered recommendation engine for personalized insights
+
+---
+
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -35,218 +86,218 @@ A sophisticated **multi-agent AI workflow** system that provides real-time portf
                        └─────────────────┘
 ```
 
-## 🛠️ Technology Stack
+---
 
-- **Backend**: FastAPI, Python 3.9+
-- **Frontend**: HTML5, CSS3, JavaScript, Chart.js
-- **AI/ML**: TextBlob, Multi-agent workflow
-- **APIs**: Alpha Vantage (Market Data), NewsAPI (Sentiment)
-- **Deployment**: Poetry, Uvicorn
+## Technology Stack
 
-## 📦 Installation
+* **Programming Language**: Python 3.9+
+* **Web Framework**: FastAPI
+* **Agent Framework**: Google Agent Development Kit (ADK)
+* **Data Processing**: pandas, NumPy
+* **HTTP Server**: Uvicorn
+* **Reporting**: ReportLab (PDF), built-in JSON serializers
+* **Testing**: pytest
+* **Deployment**: Google Cloud Run
+
+---
+
+## Installation
 
 ### Prerequisites
-- Python 3.9+
-- Poetry (package manager)
+
+* Python 3.9 or higher
+* Poetry (for dependency management)
 
 ### Setup
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd Google-Hackathon_Backend
 
-# Install dependencies
-poetry install
+1. Clone the repository
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your API keys
-```
+   ```bash
+   git clone https://github.com/yourusername/Google-Hackathon_Backend.git
+   cd Google-Hackathon_Backend
+   ```
+2. Install dependencies
+
+   ```bash
+   poetry install
+   ```
+3. Prepare environment
+
+   ```bash
+   cp .env.example .env
+   # edit .env with your API keys and settings
+   ```
 
 ### Environment Variables
-```env
+
+In your `.env` file, set:
+
+```
 ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key
+FINNHUB_API_KEY=your_finnhub_api_key
 NEWS_API_KEY=your_news_api_key
-NEWSDATA_API_KEY=your_newsdata_key
-```
-
-## 🚀 Running the Application
-
-### Start the Server
-```bash
-export ALPHA_VANTAGE_API_KEY=your_key
-poetry run uvicorn app:app --host 0.0.0.0 --port 8000
-```
-
-### Access the UI
-Open your browser and navigate to: `http://localhost:8000`
-
-## 📊 API Endpoints
-
-### Main Endpoints
-- `POST /analyze-portfolio` - Complete portfolio analysis
-- `GET /` - Frontend dashboard
-
-### Individual Agent Endpoints
-- `GET /market-data/{symbol}` - Real-time stock data
-- `GET /sentiment-analysis` - Market sentiment analysis
-- `POST /risk-assessment` - Portfolio risk metrics
-- `GET /health` - Health check
-
-## 🎯 Multi-Agent Workflow
-
-### Agent Communication Flow
-1. **Market Data Agent** → Fetches real-time prices and historical data
-2. **Sentiment Analysis Agent** → Analyzes news sentiment and extracts recent events
-3. **Risk Assessment Agent** → Calculates portfolio risk using market data
-4. **Portfolio Analysis Agent** → Computes performance metrics
-5. **Reporting Agent** → Generates comprehensive reports
-6. **AI Insights Agent** → Provides intelligent recommendations
-
-### Data Flow Example
-```python
-# Market Data Agent → Risk Assessment Agent
-market_data = await market_data_agent.get_stock_quote(symbol)
-risk_metrics = await risk_agent.calculate_portfolio_risk(portfolio, market_data)
-
-# Sentiment Analysis Agent → Reporting Agent
-sentiment_analysis = await sentiment_agent.get_portfolio_sentiment_summary(symbols)
-report = await reporting_agent.generate_portfolio_report(
-    portfolio=portfolio,
-    market_data=market_data,
-    risk_assessment=risk_metrics,
-    sentiment_analysis=sentiment_analysis
-)
-```
-
-## 📈 Data Richness
-
-### Available Data for Visualizations
-- **30-day historical price data** per stock
-- **Real-time market quotes** with fallback mechanisms
-- **Sentiment analysis** with 100+ news articles per stock
-- **Risk metrics** including volatility and concentration analysis
-- **Recent events** with impact level assessment
-- **Portfolio performance** tracking and returns calculation
-
-### Visualization Capabilities
-- **Performance Charts** - Line charts showing portfolio growth
-- **Risk Distribution** - Pie charts for portfolio allocation
-- **Sentiment Timeline** - Sentiment changes over time
-- **Volatility Analysis** - Daily returns and risk metrics
-- **Event Impact** - Recent events visualization
-
-## 🔧 Configuration
-
-### API Rate Limits
-- **Alpha Vantage**: 25 calls/day (free tier), 500 calls/day (premium)
-- **NewsAPI**: 1000 requests/day (free tier)
-
-### Fallback Mechanisms
-- Dummy data generation when APIs are rate-limited
-- Cached responses for improved performance
-- Graceful error handling for all endpoints
-
-## 🧪 Testing
-
-### Run System Tests
-```bash
-# Test all agents and endpoints
-poetry run python test_system.py
-
-# Test individual components
-poetry run python test_recent_events.py
-poetry run python test_market_data.py
-```
-
-### Test Portfolio Analysis
-```bash
-curl -X POST "http://localhost:8000/analyze-portfolio" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "portfolio": [
-      {"symbol": "AAPL", "quantity": 10, "purchase_price": 150.0},
-      {"symbol": "MSFT", "quantity": 5, "purchase_price": 300.0}
-    ],
-    "risk_tolerance": "moderate",
-    "investment_goals": ["growth"],
-    "time_horizon": "5-10 years"
-  }'
-```
-
-## 📋 Project Structure
-
-```
-Google-Hackathon_Backend/
-├── agent/                          # AI Agents
-│   ├── market_data_agent.py       # Real-time market data
-│   ├── sentiment_analysis_agent.py # Sentiment analysis
-│   ├── risk_assessment_agent.py   # Risk metrics
-│   ├── reporting_agent.py         # Report generation
-│   ├── personalization_agent.py   # User personalization
-│   └── ai_insights_agent.py       # AI insights
-├── templates/                      # Frontend templates
-│   └── index.html                 # Main dashboard
-├── static/                        # Static assets
-├── reports/                       # Generated reports
-├── app.py                         # FastAPI application
-├── requirements.txt               # Dependencies
-├── pyproject.toml                # Poetry configuration
-└── README.md                     # This file
-```
-
-## 🎉 Key Achievements
-
-### **Multi-Agent AI Workflow**
-- ✅ 6 specialized AI agents working in harmony
-- ✅ Real-time data processing and analysis
-- ✅ Intelligent agent communication and data sharing
-- ✅ Comprehensive portfolio insights
-
-### **Production-Ready Features**
-- ✅ Real-time market data integration
-- ✅ Advanced sentiment analysis with recent events
-- ✅ Professional risk assessment metrics
-- ✅ Beautiful, responsive frontend UI
-- ✅ Robust error handling and fallbacks
-
-### **Hackathon Ready**
-- ✅ Complete end-to-end functionality
-- ✅ Rich data for compelling visualizations
-- ✅ Professional-grade architecture
-- ✅ Comprehensive documentation
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🚀 Deployment
-
-### Local Development
-```bash
-poetry run uvicorn app:app --host 0.0.0.0 --port 8000 --reload
-```
-
-### Production Deployment
-```bash
-# Set production environment variables
-export ALPHA_VANTAGE_API_KEY=your_production_key
-export NEWS_API_KEY=your_production_key
-
-# Start production server
-poetry run uvicorn app:app --host 0.0.0.0 --port 8000 --workers 4
+GOOGLE_API_KEY=your_google_api_key
+DEBUG=True
+LOG_LEVEL=INFO
+API_RATE_LIMIT=60
+CACHE_DURATION=3600
 ```
 
 ---
 
-**Built with ❤️ for Google Hackathon 2024**
+## Running the Application
 
-*Multi-Agent AI Portfolio Management System - Where Intelligence Meets Investment*
+### Start the Server
+
+```bash
+export ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key
+poetry run uvicorn app:app --host 0.0.0.0 --port 8000
+```
+
+### Access the UI
+
+Navigate to `http://localhost:8000` in your browser.
+
+---
+
+## API Endpoints
+
+### Main Endpoints
+
+* **POST** `/analyze-portfolio`
+  Submit portfolio data and receive complete analysis
+* **GET** `/`
+  Serve the frontend dashboard
+
+### Agent Endpoints
+
+* **GET** `/market-data/{symbol}`
+  Real-time quote and historical series for a stock
+* **GET** `/sentiment-analysis`
+  Aggregated sentiment scores for a list of symbols
+* **POST** `/risk-assessment`
+  Portfolio risk metrics (VaR, drawdown, concentration)
+* **GET** `/health`
+  Health check
+
+---
+
+## Multi-Agent Workflow
+
+### Communication Flow
+
+1. Market Data Agent → Fetch prices from Alpha Vantage / Finnhub
+2. Sentiment Analysis Agent → Retrieve headlines and score via NewsAPI
+3. Risk Assessment Agent → Calculate risk metrics from market data
+4. Portfolio Analysis Agent → Compute performance and returns
+5. Reporting Agent → Generate PDF and JSON reports
+6. AI Insights Agent → Create personalized recommendations
+
+### Data Flow Example
+
+```python
+market_data = await market_data_agent.get_quote(symbol)
+risk_metrics = await risk_agent.calculate(portfolio, market_data)
+sentiment = await sentiment_agent.summarize(symbols)
+report = await reporting_agent.create_report(
+    portfolio=portfolio,
+    market_data=market_data,
+    risk=risk_metrics,
+    sentiment=sentiment
+)
+```
+
+---
+
+## Data Richness
+
+### Available Data
+
+* 30-day historical prices per symbol
+* Live quotes with caching
+* Sentiment from 100+ news articles per symbol
+* Risk metrics: VaR, drawdown, HHI
+* Portfolio performance and allocation breakdown
+
+### Visualization Capabilities
+
+* Line charts for price history and growth
+* Pie charts for allocation and concentration
+* Bar charts for risk breakdown
+* Timelines for sentiment shifts
+
+---
+
+## Configuration
+
+### API Rate Limits
+
+* Alpha Vantage: 25 calls/day (free), 500 calls/day (premium)
+* Finnhub: 60 calls/minute
+* NewsAPI: 1000 requests/day
+
+### Fallback Mechanisms
+
+* Caching to avoid rate limits
+* Synthetic data when APIs fail
+* Graceful error handling
+
+---
+
+## Testing
+
+Run the full test suite:
+
+```bash
+poetry run pytest
+```
+
+* **test\_system.py**: end-to-end agent and API integration
+* **test\_market\_data.py**, **test\_sentiment.py**, **test\_risk.py**: individual agents
+
+---
+
+## Project Structure
+
+```
+Google-Hackathon_Backend/
+├── agent/
+│   ├── market_data_agent.py
+│   ├── sentiment_analysis_agent.py
+│   ├── risk_assessment_agent.py
+│   ├── portfolio_analysis_agent.py
+│   ├── reporting_agent.py
+│   └── ai_insights_agent.py
+├── app.py
+├── .env.example
+├── requirements.txt
+├── reports/
+├── static/
+└── README.md
+```
+
+---
+
+## Key Achievements
+
+* Six agents collaborating in real time
+* End-to-end portfolio analysis pipeline
+* PDF & JSON report generation
+* AI-driven recommendations
+* Deployed on Google Cloud Run
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit changes: `git commit -m "Describe feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a pull request
+
+---
+
+
+**QuantumFin AI Backend**
+Part of the Agent Development Kit Hackathon with Google Cloud
