@@ -1,6 +1,6 @@
 # QuantumFin AI Backend
 
-This repository contains the server-side components of **QuantumFin AI**, developed as part of the Agent Development Kit Hackathon with Google Cloud. The backend implements a multi-agent architecture that powers real-time portfolio analysis, market sentiment scoring, risk assessment, and report generation.
+This repository contains the server-side components of **QuantumFin AI**, developed as part of the Agent Development Kit Hackathon with Google Cloud. The backend implements a multi-agent architecture that powers real-time portfolio analysis, market sentiment scoring, risk assessment, and report generation. Front end Repo:- https://github.com/singh2626ss/portfolio-frontend
 
 ## Table of Contents
 
